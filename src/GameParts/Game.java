@@ -28,7 +28,8 @@ public class Game extends Canvas implements Runnable {
     //estados que controlan el juego
     public enum STATE{
         Menu(),
-        Game()
+        Game(),
+        GameOver()
     }
 
     public static STATE state = STATE.Menu;
@@ -105,9 +106,16 @@ public class Game extends Canvas implements Runnable {
 
         }
         else if(state == STATE.Game) {
+            if(Hud.health == 0){
+                state = STATE.GameOver;
+                Hud.resetGame();
+            }
             handler.tick();
             hud.tick();
             camera.tick();
+        }
+        else if(state == STATE.GameOver ) {
+
         }
     }
 
@@ -121,17 +129,25 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D)g;
 
-        g.setColor(new Color(123, 57, 23));
-        g.fillRect(0,0,WIDTH,HEIGHT);
-
         if(state == STATE.Menu) {
+            g.setColor(Color.black);
+            g.fillRect(0,0,WIDTH,HEIGHT);
             menu.render(g);
         }
         else if(state == STATE.Game){
+            g.setColor(new Color(123, 57, 23));
+            g.fillRect(0,0,WIDTH,HEIGHT);
             g2d.translate(-camera.getX(),-camera.getY());
             handler.render(g);
             g2d.translate(camera.getX(),camera.getY());
             hud.render(g);
+        }
+        else if(state == STATE.GameOver ) {
+            g.setColor(Color.black);
+            g.fillRect(0,0,WIDTH,HEIGHT);
+            g.setColor(Color.white);
+            g.setFont(new Font("arial",3,100));
+            g.drawString("YOU DIED",WIDTH/3,HEIGHT/2);
         }
 
 

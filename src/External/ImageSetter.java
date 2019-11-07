@@ -6,12 +6,15 @@ import java.io.IOException;
 public class ImageSetter {
 
     public static BufferedImageLoader BIL = new BufferedImageLoader();
+    //imagenes grandotas
     public static BufferedImage playerSheet = null;
     public static BufferedImage enemySheet = null;
     public static BufferedImage trashSheet = null;
+    //recortador de imagenes
     public static SpriteSheet pSheet = null;
     public static SpriteSheet eSheet = null;
     public static SpriteSheet tSheet = null;
+    //imagenes recortadas
     public static BufferedImage player = null;
     public static BufferedImage basicEnemy = null;
     public static BufferedImage fastEnemy = null;

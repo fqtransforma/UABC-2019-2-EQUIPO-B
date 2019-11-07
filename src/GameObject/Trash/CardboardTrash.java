@@ -1,6 +1,8 @@
-package GameObject;
+package GameObject.Trash;
 
 import External.ImageSetter;
+import GameObject.GameObject;
+import GameObject.ID;
 
 import java.awt.*;
 

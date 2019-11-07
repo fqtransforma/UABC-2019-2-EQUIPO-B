@@ -1,6 +1,12 @@
 package GameParts;
 
 import GameObject.*;
+import GameObject.Enemies.BasicEnemy;
+import GameObject.Enemies.FastEnemy;
+import GameObject.Trash.AluminumTrash;
+import GameObject.Trash.CardboardTrash;
+import GameObject.Trash.OrganicTrash;
+import GameObject.Trash.PlasticTrash;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

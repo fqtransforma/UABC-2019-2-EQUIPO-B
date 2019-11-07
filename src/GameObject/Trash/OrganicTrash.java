@@ -1,13 +1,14 @@
-package GameObject;
-
-
+package GameObject.Trash;
 
 import External.ImageSetter;
+import GameObject.GameObject;
+import GameObject.ID;
 
 import java.awt.*;
 
-public class AluminumTrash extends GameObject {
-    public AluminumTrash(float x, float y, ID id) {
+public class OrganicTrash extends GameObject{
+
+    public OrganicTrash(float x, float y, ID id) {
         super(x, y, id);
     }
 
@@ -18,7 +19,7 @@ public class AluminumTrash extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(ImageSetter.aluminum,(int)x,(int)y,null);
+        g.drawImage(ImageSetter.organic,(int)x,(int)y,null);
     }
 
     @Override

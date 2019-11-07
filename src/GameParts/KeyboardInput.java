@@ -28,7 +28,7 @@ public class KeyboardInput extends KeyAdapter {
                 Game.state = Game.STATE.Game;
         }
 
-        if(Game.state == Game.STATE.Game){
+        else if(Game.state == Game.STATE.Game){
             for(int i = 0; i < handler.object.size(); i++) {
                 GameObject tempObject = handler.object.get(i);
                 //busca al jugador
@@ -40,6 +40,10 @@ public class KeyboardInput extends KeyAdapter {
                     if(key == KeyEvent.VK_A) {tempObject.setVelX(-Hud.speed); keyDown[3] = true;}
                 }
             }
+        }
+        else if(Game.state == Game.STATE.GameOver){
+            if(key == KeyEvent.VK_ENTER)
+                Game.state = Game.STATE.Menu;
         }
 
         if(key == KeyEvent.VK_ESCAPE) System.exit(1);

@@ -23,6 +23,19 @@ public class Hud {
         trash[3] = 0;
     }
 
+    public static void resetGame(){
+        level = 1;
+        health = 1000;
+        shield = 0;
+        speed = 3;
+        bullets = 0;
+        trash[0] = 0;
+        trash[1] = 0;
+        trash[2] = 0;
+        trash[3] = 0;
+        score = 0;
+    }
+
     //logica del heads up display
     public void tick(){
         shield = (int) Game.clamp(shield, 0, 1000);

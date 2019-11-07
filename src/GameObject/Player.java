@@ -10,6 +10,7 @@ import java.awt.*;
 public class Player extends GameObject{
 
     private Handler handler;
+    private boolean carrying = false;
 
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -22,7 +23,15 @@ public class Player extends GameObject{
 
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getID() == ID.BasicEnemy || tempObject.getID() == ID.FastEnemy) {
+            if(tempObject.getID() == ID.BasicEnemy) {
+                if(getBounds().intersects(tempObject.getBounds())) {
+                    if(Hud.shield>0)
+                        Hud.shield-=2;
+                    else
+                        Hud.health-=2;
+                }
+            }
+            else if(tempObject.getID() == ID.FastEnemy){
                 if(getBounds().intersects(tempObject.getBounds())) {
                     if(Hud.shield>0)
                         Hud.shield-=1;
@@ -39,35 +48,39 @@ public class Player extends GameObject{
 
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getID() == ID.CardboardTrash) {
+            if(tempObject.getID() == ID.CardboardTrash && carrying == false) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[0]+=1;
                     Hud.score+=10;
+                    carrying = true;
                 }
             }
 
-            else if(tempObject.getID() == ID.PlasticTrash) {
+            else if(tempObject.getID() == ID.PlasticTrash && carrying == false) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[1]+=1;
                     Hud.score+=10;
+                    carrying = true;
                 }
             }
 
-            else if(tempObject.getID() == ID.OrganicTrash) {
+            else if(tempObject.getID() == ID.OrganicTrash && carrying == false) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[2]+=1;
                     Hud.score+=10;
+                    carrying = true;
                 }
             }
 
-            else if(tempObject.getID() == ID.AluminumTrash) {
+            else if(tempObject.getID() == ID.AluminumTrash && carrying == false) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[3]+=1;
                     Hud.score+=10;
+                    carrying = true;
                 }
             }
         }

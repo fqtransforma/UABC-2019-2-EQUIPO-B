@@ -1,7 +1,9 @@
-package GameObject;
+package GameObject.Enemies;
 
 import External.ImageSetter;
+import GameObject.GameObject;
 import GameParts.Handler;
+import GameObject.ID;
 
 import java.awt.*;
 
