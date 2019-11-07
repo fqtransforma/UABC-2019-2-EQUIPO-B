@@ -3,7 +3,6 @@ package GameObject;
 import External.ImageSetter;
 import GameParts.Handler;
 import GameParts.Hud;
-import GameParts.Game;
 
 import java.awt.*;
 
@@ -18,7 +17,7 @@ public class Player extends GameObject{
     }
 
     //detecta colision con enemigos
-    public void enemyCollision() {
+    private void enemyCollision() {
         for(int i = 0; i < handler.object.size(); i++) {
 
             GameObject tempObject = handler.object.get(i);
@@ -43,12 +42,12 @@ public class Player extends GameObject{
     }
 
     //detecta colision con basura
-    public void trashCollision() {
+    private void trashCollision() {
         for(int i = 0; i < handler.object.size(); i++) {
 
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getID() == ID.CardboardTrash && carrying == false) {
+            if(tempObject.getID() == ID.CardboardTrash && !carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[0]+=1;
@@ -57,7 +56,7 @@ public class Player extends GameObject{
                 }
             }
 
-            else if(tempObject.getID() == ID.PlasticTrash && carrying == false) {
+            else if(tempObject.getID() == ID.PlasticTrash && !carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[1]+=1;
@@ -66,7 +65,7 @@ public class Player extends GameObject{
                 }
             }
 
-            else if(tempObject.getID() == ID.OrganicTrash && carrying == false) {
+            else if(tempObject.getID() == ID.OrganicTrash && !carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[2]+=1;
@@ -75,7 +74,7 @@ public class Player extends GameObject{
                 }
             }
 
-            else if(tempObject.getID() == ID.AluminumTrash && carrying == false) {
+            else if(tempObject.getID() == ID.AluminumTrash && !carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[3]+=1;

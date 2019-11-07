@@ -1,7 +1,6 @@
 package GameParts;
 
 import External.ImageSetter;
-import GameObject.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -23,7 +22,6 @@ public class Game extends Canvas implements Runnable {
     private Hud hud;
     private KeyboardInput kb;
     private Camera camera;
-    private Random r;
 
     //estados que controlan el juego
     public enum STATE{
@@ -43,7 +41,6 @@ public class Game extends Canvas implements Runnable {
     //inicizizador de las partes del juego
     private void init(){
         ImageSetter.loadImages();
-        r = new Random();
         handler = new Handler();
         menu = new Menu();
         hud = new Hud();

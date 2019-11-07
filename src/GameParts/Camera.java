@@ -2,7 +2,6 @@ package GameParts;
 
 import GameObject.GameObject;
 import GameObject.ID;
-import java.awt.*;
 
 public class Camera {
 
@@ -16,7 +15,7 @@ public class Camera {
         this.handler = handler;
     }
 
-    public void findPlayer(){
+    private void findPlayer(){
         for(int i = 0; i < handler.object.size(); i++){
             if(handler.object.get(i).getID() == ID.Player){
                 tempPlayer = handler.object.get(i);
@@ -32,10 +31,6 @@ public class Camera {
         }
         else
             findPlayer();
-    }
-
-    public void render(Graphics g){
-
     }
 
     public int getX() {
