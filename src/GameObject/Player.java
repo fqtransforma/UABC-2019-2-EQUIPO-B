@@ -9,7 +9,6 @@ import java.awt.*;
 public class Player extends GameObject{
 
     private Handler handler;
-    private boolean carrying = false;
 
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -47,39 +46,39 @@ public class Player extends GameObject{
 
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getID() == ID.CardboardTrash && !carrying) {
+            if(tempObject.getID() == ID.CardboardTrash && !Hud.carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[0]+=1;
                     Hud.score+=10;
-                    carrying = true;
+                    Hud.carrying = true;
                 }
             }
 
-            else if(tempObject.getID() == ID.PlasticTrash && !carrying) {
+            else if(tempObject.getID() == ID.PlasticTrash && !Hud.carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[1]+=1;
                     Hud.score+=10;
-                    carrying = true;
+                    Hud.carrying = true;
                 }
             }
 
-            else if(tempObject.getID() == ID.OrganicTrash && !carrying) {
+            else if(tempObject.getID() == ID.OrganicTrash && !Hud.carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[2]+=1;
                     Hud.score+=10;
-                    carrying = true;
+                    Hud.carrying = true;
                 }
             }
 
-            else if(tempObject.getID() == ID.AluminumTrash && !carrying) {
+            else if(tempObject.getID() == ID.AluminumTrash && !Hud.carrying) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
                     Hud.trash[3]+=1;
                     Hud.score+=10;
-                    carrying = true;
+                    Hud.carrying = true;
                 }
             }
         }

@@ -25,9 +25,9 @@ public class ImageSetter {
 
     public static void loadImages(){
         try{
-            playerSheet = BIL.loadImage("player.png");
-            enemySheet = BIL.loadImage("enemy.png");
-            trashSheet = BIL.loadImage("trash.png");
+            playerSheet = BIL.loadImage("res/player.png");
+            enemySheet = BIL.loadImage("res/enemy.png");
+            trashSheet = BIL.loadImage("res/trash2.png");
         }catch (IOException e){
             e.printStackTrace();
         }

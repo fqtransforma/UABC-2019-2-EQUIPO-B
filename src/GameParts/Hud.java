@@ -5,7 +5,7 @@ import java.awt.*;
 public class Hud {
 
     public static int level = 1;
-    public static int health = 1000;
+    public static int health = 100;
     public static int shield = 0;
     public static float speed = 3;
     public static int bullets = 0;
@@ -15,6 +15,7 @@ public class Hud {
     //trash[2] = organic
     //trash[3] = aluminum
     public static int score = 0;
+    public static boolean carrying = false;
 
     public Hud(){
         trash[0] = 0;
@@ -25,7 +26,7 @@ public class Hud {
 
     public static void resetGame(){
         level = 1;
-        health = 1000;
+        health = 100;
         shield = 0;
         speed = 3;
         bullets = 0;
@@ -56,8 +57,8 @@ public class Hud {
         g.drawString("Plastic: "+trash[1],400,45);
         g.drawString("Organic: "+trash[2],600,45);
         g.drawString("Aluminum: "+trash[3],800,45);
-        g.drawString("Shield: "+shield/10,1000,30);
-        g.drawString("Health: "+health/10,1000,60);
+        g.drawString("Shield: "+shield,1000,30);
+        g.drawString("Health: "+health,1000,60);
     }
 
 }

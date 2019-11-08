@@ -33,13 +33,13 @@ public class FastEnemy extends GameObject {
             velX = (float) ((-1.0/distance)*diffX);
             velY = (float) ((-1.0/distance)*diffY);
             if(velX<0)
-                velX-=1;
+                velX-=1.2;
             else
-                velX+=1;
+                velX+=1.2;
             if(velY<0)
-                velY-=1;
+                velY-=1.2;
             else
-                velY+=1;
+                velY+=1.2;
             x += velX;
             y += velY;
         }
