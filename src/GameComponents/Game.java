@@ -1,6 +1,7 @@
 package GameComponents;
 
 import External.ImageSetter;
+import External.Leaderboards;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -22,6 +23,7 @@ public class Game extends Canvas implements Runnable {
     private Hud hud;
     private Level level;
     private Camera camera;
+    private Leaderboards lb;
     private KeyboardInput kb;
     private MouseClick mc;
 
@@ -45,7 +47,8 @@ public class Game extends Canvas implements Runnable {
     private void init(){
         ImageSetter.loadImages();
         handler = new Handler();
-        menu = new Menu();
+        lb = new Leaderboards();
+        menu = new Menu(lb);
         hud = new Hud();
         level = new Level(handler);
         camera = new Camera(0,0,handler);
@@ -104,10 +107,15 @@ public class Game extends Canvas implements Runnable {
     //metodo que maneja la logica del juego
     private void tick(){
 
-        if(state == STATE.Game) {
+        if(state == STATE.LeaderBoards){
+            menu.tick();
+        }
+        else if(state == STATE.Game) {
             //resetea todas las variables del juego en caso de que el jugador muera
             if(Hud.health == 0){
                 state = STATE.GameOver;
+                lb.addRankedPlayer();
+                lb.write();
                 Hud.resetGame();
                 level.resetLevels();
                 handler.object.clear();
@@ -131,7 +139,7 @@ public class Game extends Canvas implements Runnable {
         Graphics2D g2d = (Graphics2D)g;
 
         //pinta menu
-        if(state == STATE.Menu) {
+        if(state == STATE.Menu || state == STATE.LeaderBoards) {
             menu.render(g);
         }
         //pinta hud, nivel y actores

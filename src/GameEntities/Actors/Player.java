@@ -108,7 +108,7 @@ public class Player extends GameObject{
                 if(getBounds().intersects(tempObject.getBounds())) {
                     Hud.trashCarrying[0] = false;
                     Hud.score += 90;
-                    Hud.deliveredtTrash++;
+                    Hud.deliveredTrash++;
                     Hud.speed += 0.1;
                 }
             }
@@ -116,14 +116,14 @@ public class Player extends GameObject{
                 if(getBounds().intersects(tempObject.getBounds())) {
                     Hud.trashCarrying[1] = false;
                     Hud.score += 90;
-                    Hud.deliveredtTrash++;
+                    Hud.deliveredTrash++;
                 }
             } // Pendiente las balas
             else if (tempObject.getID() == ID.OrganicRecycler && Hud.trashCarrying[2]){
                 if(getBounds().intersects(tempObject.getBounds())) {
                     Hud.trashCarrying[2] = false;
                     Hud.score += 90;
-                    Hud.deliveredtTrash++;
+                    Hud.deliveredTrash++;
                     Hud.health += 10;
                 }
             }
@@ -131,7 +131,7 @@ public class Player extends GameObject{
                 if(getBounds().intersects(tempObject.getBounds())) {
                     Hud.trashCarrying[3] = false;
                     Hud.score += 90;
-                    Hud.deliveredtTrash++;
+                    Hud.deliveredTrash++;
                     Hud.shield += 10;
                 }
             }

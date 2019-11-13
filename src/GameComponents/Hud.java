@@ -11,7 +11,7 @@ public class Hud {
     public static int bullets = 0;
     public static boolean[] trashCarrying = new boolean[4];
     public static int score = 0;
-    public static int deliveredtTrash = 0;
+    public static int deliveredTrash = 0;
 
     public Hud(){
         //inicializa en falso porque no estamos cargando ninguna basura
@@ -33,7 +33,7 @@ public class Hud {
         trashCarrying[2] = false;
         trashCarrying[3] = false;
         score = 0;
-        deliveredtTrash = 0;
+        deliveredTrash = 0;
     }
 
     public void tick(){
