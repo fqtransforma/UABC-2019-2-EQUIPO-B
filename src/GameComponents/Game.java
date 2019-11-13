@@ -1,11 +1,12 @@
 package GameComponents;
 
-import External.ImageSetter;
-import External.Leaderboards;
+import External.Files.ImageSetter;
+import External.Files.Leaderboards;
+import External.UserInput.KeyboardInput;
+import External.UserInput.MouseClick;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game extends Canvas implements Runnable {
 
@@ -16,6 +17,7 @@ public class Game extends Canvas implements Runnable {
     //public static final int HEIGHT = 600;
     private Thread thread;
     private boolean running = false;
+    public static boolean capturePlayer;
 
     //partes del juego
     private Handler handler;
@@ -35,8 +37,10 @@ public class Game extends Canvas implements Runnable {
         GameOver()
     }
 
+    //estado inicial
     public static STATE state = STATE.Menu;
 
+    //constructor del juego
     public Game(){
         init();
         new Window(WIDTH,HEIGHT,"Game",this);
@@ -53,17 +57,19 @@ public class Game extends Canvas implements Runnable {
         level = new Level(handler);
         camera = new Camera(0,0,handler);
         kb = new KeyboardInput(handler,level);
-        mc = new MouseClick();
+        mc = new MouseClick(lb);
         this.addMouseListener(mc);
         this.addKeyListener(kb);
     }
 
+    //inicializa hilo
     private synchronized void start(){
         thread = new Thread(this);
         thread.start();
         running = true;
     }
 
+    //detiene hilo
     private synchronized void stop(){
         try{
             thread.join();
@@ -107,24 +113,27 @@ public class Game extends Canvas implements Runnable {
     //metodo que maneja la logica del juego
     private void tick(){
 
-        if(state == STATE.LeaderBoards){
-            menu.tick();
-        }
-        else if(state == STATE.Game) {
-            //resetea todas las variables del juego en caso de que el jugador muera
+        if(state == STATE.Game) {
+            //cambia a game over si se muere el jugador
             if(Hud.health == 0){
                 state = STATE.GameOver;
-                lb.addRankedPlayer();
-                lb.write();
-                Hud.resetGame();
-                level.resetLevels();
-                handler.object.clear();
             }
             //corre las variables de los componentes del juego
             level.tick();
             handler.tick();
             hud.tick();
             camera.tick();
+        }
+        else if(state == STATE.GameOver){
+            //agrega jugador al arreglo, lo escribe y reinicia el juego
+            if(capturePlayer) {
+                lb.addRankedPlayer();
+                lb.write();
+                Hud.resetGame();
+                level.resetLevels();
+                handler.object.clear();
+            }
+            capturePlayer = false;
         }
     }
 
@@ -176,6 +185,7 @@ public class Game extends Canvas implements Runnable {
         else return var;
     }
 
+    //
     public static void main(String[] args) {
         new Game();
     }

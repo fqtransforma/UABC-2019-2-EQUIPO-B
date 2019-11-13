@@ -1,5 +1,9 @@
-package GameComponents;
+package External.UserInput;
 
+import GameComponents.Game;
+import GameComponents.Handler;
+import GameComponents.Hud;
+import GameComponents.Level;
 import GameEntities.Entity.GameObject;
 import GameEntities.Entity.ID;
 

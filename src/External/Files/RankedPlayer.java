@@ -1,7 +1,6 @@
-package External;
+package External.Files;
 
 import GameComponents.Hud;
-
 import java.io.Serializable;
 
 public class RankedPlayer implements Serializable {
@@ -11,6 +10,8 @@ public class RankedPlayer implements Serializable {
     private int level;
     private int recycledTrash;
 
+    //agarramos los datos que queremos guardar del hud para mostrar en leaderboards
+    //el unico dato extra es el nombre del jugador
     public RankedPlayer(String name) {
         this.name = name;
         this.score = Hud.score;

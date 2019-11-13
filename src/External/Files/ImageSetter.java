@@ -1,12 +1,13 @@
-package External;
+package External.Files;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ImageSetter {
 
+    //cargador de imagenes
     public static BufferedImageLoader BIL = new BufferedImageLoader();
-    //imagenes grandotas
+    //imagenes completas
     public static BufferedImage playerSheet = null;
     public static BufferedImage enemySheet = null;
     public static BufferedImage trashSheet = null;
@@ -34,6 +35,7 @@ public class ImageSetter {
 
     public static void loadImages(){
         try{
+            //carga imagenes completas
             playerSheet = BIL.loadImage("res/player.png");
             enemySheet = BIL.loadImage("res/enemy.png");
             trashSheet = BIL.loadImage("res/trash.png");
@@ -44,10 +46,12 @@ public class ImageSetter {
         }catch (IOException e){
             e.printStackTrace();
         }
+        //inicializa los recortadores
         pSheet = new SpriteSheet(playerSheet);
         eSheet = new SpriteSheet(enemySheet);
         tSheet = new SpriteSheet(trashSheet);
         rsheet = new SpriteSheet(recyclerSheet);
+        //imagenes recortadas
         player = pSheet.grabImage(1,1,32,32);
         basicEnemy = eSheet.grabImage(1,1,32,48);
         fastEnemy = eSheet.grabImage(1,1,32,17);

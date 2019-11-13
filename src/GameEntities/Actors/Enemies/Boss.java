@@ -1,6 +1,6 @@
 package GameEntities.Actors.Enemies;
 
-import External.ImageSetter;
+import External.Files.ImageSetter;
 import GameComponents.Handler;
 import GameEntities.Entity.GameObject;
 import GameEntities.Entity.ID;

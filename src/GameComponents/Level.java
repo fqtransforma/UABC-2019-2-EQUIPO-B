@@ -1,6 +1,6 @@
 package GameComponents;
 
-import External.ImageSetter;
+import External.Files.ImageSetter;
 import GameEntities.Actors.Enemies.BasicEnemy;
 import GameEntities.Actors.Enemies.Boss;
 import GameEntities.Actors.Enemies.FastEnemy;
@@ -30,10 +30,12 @@ public class Level {
         r = new Random();
     }
 
+    //resetea booleandos para que objetos puedan volver a aparecer
     public void resetLevels(){
         this.level1 = true;
     }
 
+    //agrega los objetos correspondientes a cada nivel
     public void tick(){
         if(Hud.level == 1 && level1){
             level1 = false;
@@ -52,6 +54,7 @@ public class Level {
         }
     }
 
+    //pinta el fondo correspondiente de cada nivel
     public void render(Graphics g){
         if(Hud.level == 1){
             g.drawImage(ImageSetter.levelbg,0,Game.WIDTH/8,null);

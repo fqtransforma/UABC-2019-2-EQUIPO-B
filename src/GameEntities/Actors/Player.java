@@ -1,6 +1,6 @@
 package GameEntities.Actors;
 
-import External.ImageSetter;
+import External.Files.ImageSetter;
 import GameComponents.Game;
 import GameEntities.Entity.GameObject;
 import GameComponents.Handler;
@@ -100,6 +100,7 @@ public class Player extends GameObject{
         }
     }
 
+    //detecta colision con recicladoras y valida que estemos cargando el material correcto
     public void recyclerCollision(){
         for(int i = 0; i < handler.object.size(); i++) {
 
@@ -142,12 +143,15 @@ public class Player extends GameObject{
     //logica del jugador
     @Override
     public void tick() {
+        //movimiento
         x+=velX;
         y+=velY;
 
+        //clamps para que no salga del nivel
         x = Game.clamp(x,0, ImageSetter.levelbg.getWidth()-24);
         y = Game.clamp(y,(Game.HEIGHT/8)+68, ImageSetter.levelbg.getHeight()+(Game.HEIGHT/8)+32);
 
+        //detecta todas las colisiones
         enemyCollision();
         trashCollision();
         recyclerCollision();
@@ -159,6 +163,7 @@ public class Player extends GameObject{
         g.drawImage(ImageSetter.player,(int)x,(int)y,null);
     }
 
+    //retorna tamano del jugador
     @Override
     public Rectangle getBounds() {
         return new Rectangle((int)x,(int)y,16,32);

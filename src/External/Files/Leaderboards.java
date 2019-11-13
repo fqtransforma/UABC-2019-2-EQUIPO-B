@@ -1,4 +1,4 @@
-package External;
+package External.Files;
 
 import javax.swing.*;
 import java.io.*;
@@ -6,14 +6,17 @@ import java.util.ArrayList;
 
 public class Leaderboards {
 
+    //lista de scores de jugadores previos
     public ArrayList<RankedPlayer> list = new ArrayList<>();
 
+    //metodo para agregar jugador a la lista, pide nombre antes de agregarlo
     public void addRankedPlayer(){
         String name;
         name = JOptionPane.showInputDialog("Enter your name!");
         list.add(new RankedPlayer(name));
     }
 
+    //escribe la lista en un archivo
     public void write() {
         try {
             FileOutputStream fos = new FileOutputStream("leaderboards.dat");
@@ -33,6 +36,7 @@ public class Leaderboards {
         }
     }
 
+    //lee la lista de un archivo
     public void read(){
         try{
             FileInputStream fis = new FileInputStream("leaderboards.dat");

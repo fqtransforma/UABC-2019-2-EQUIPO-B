@@ -16,8 +16,11 @@ public abstract class GameObject {
         this.id = id;
     }
 
+    //metodo que actualiza las variables del objeto
     public abstract void tick();
+    //metodo que pinta el objeto
     public abstract void render(Graphics g);
+    //metodo que retorna el rectangulo del objeto
     public abstract Rectangle getBounds();
 
     //setters y getters de las variables

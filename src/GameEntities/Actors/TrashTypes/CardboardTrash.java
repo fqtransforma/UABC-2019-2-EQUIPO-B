@@ -1,6 +1,6 @@
 package GameEntities.Actors.TrashTypes;
 
-import External.ImageSetter;
+import External.Files.ImageSetter;
 import GameEntities.Entity.GameObject;
 import GameEntities.Entity.ID;
 

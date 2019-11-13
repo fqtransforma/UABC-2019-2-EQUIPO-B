@@ -1,4 +1,4 @@
-package External;
+package External.Files;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
