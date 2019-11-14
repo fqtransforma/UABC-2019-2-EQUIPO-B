@@ -1,0 +1,5 @@
+<application>
+  <component name="IntentionManagerSettings">
+    <ignoreAction name="Java/Other/Replace Operator Assignment with Assignment" />
+  </component>
+</application>
