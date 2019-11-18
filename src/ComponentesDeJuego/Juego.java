@@ -61,6 +61,7 @@ public class Juego extends Canvas implements Runnable {
         this.addMouseListener(mouse);
         this.addKeyListener(teclado);
         lb.leer();
+        //hhaha
     }
 
     //inicializa hilo
