@@ -1,9 +1,8 @@
 package ComponentesDeJuego;
 
+import EntidadesDeJuego.Actores.Portal;
 import Externo.Archivos.SetterDeImagenes;
 import EntidadesDeJuego.Actores.Enemigos.EnemigoBasico;
-import EntidadesDeJuego.Actores.Enemigos.Jefe;
-import EntidadesDeJuego.Actores.Enemigos.EnemigoRapido;
 import EntidadesDeJuego.Actores.Jugador;
 import EntidadesDeJuego.Actores.Recicladoras.RecicAlum;
 import EntidadesDeJuego.Actores.Recicladoras.RecicCarton;
@@ -21,43 +20,76 @@ import java.util.Random;
 public class Nivel {
 
     private Controlador controlador;
-    private boolean nivel1;
+    private boolean[] portal = new boolean[5];
+    private boolean[] nivel = new boolean[5];
     private Random r;
 
     public Nivel(Controlador handler){
         this.controlador = handler;
-        nivel1 = true;
+        for(int i = 0; i < 5; i++){
+            portal[i] = true;
+            nivel[i] = true;
+        }
         r = new Random();
     }
 
     //resetea booleandos para que objetos puedan volver a aparecer
-    public void resetNiveles(){
-        this.nivel1 = true;
+    public void resetNivel(){
+        for(int i = 0; i < 5; i++){
+            portal[i] = true;
+            nivel[i] = true;
+        }
+    }
+    
+    public void abrePortales(){
+        if(Hud.basuraEntregada == 4 && Hud.nivel == 1 && portal[0]){
+            portal[0] = false;
+            controlador.agregaObject(new Portal(1500,1500,ID.Portal));
+        }
     }
 
     //agrega los objetos correspondientes a cada nivel
     public void tick(){
-        if(Hud.nivel == 1 && nivel1){
-            nivel1 = false;
-            controlador.agregaObject(new RecicAlum(48,448, ID.RecicladoraAluminio));
-            controlador.agregaObject(new RecicCarton(48,650,ID.RecicladoraCarton));
-            controlador.agregaObject(new RecicPlastico(48,800,ID.RecicladoraPlastico));
-            controlador.agregaObject(new RecicOrganic(48,900,ID.RecicladoraOrganica));
-            controlador.agregaObject(new Aluminio(500,500,ID.Aluminio));
-            controlador.agregaObject(new Carton(500,700,ID.Carton));
-            controlador.agregaObject(new Organico(500,800,ID.BasuraOrganica));
-            controlador.agregaObject(new Plastico(500,600,ID.Plastico));
-            controlador.agregaObject(new EnemigoBasico(r.nextInt(Juego.ANCHO), Juego.ALTURA /8+r.nextInt(Juego.ALTURA - Juego.ALTURA /8), ID.EnemigoBasico, controlador));
-            controlador.agregaObject(new EnemigoRapido(r.nextInt(Juego.ANCHO), Juego.ALTURA /8+r.nextInt(Juego.ALTURA - Juego.ALTURA /8), ID.EnemigoRapido, controlador));
-            controlador.agregaObject(new Jefe(r.nextInt(Juego.ANCHO), Juego.ALTURA /8+r.nextInt(Juego.ALTURA - Juego.ALTURA /8), ID.Jefe, controlador));
-            controlador.agregaObject(new Jugador(SetterDeImagenes.levelbg.getWidth()/2-32, SetterDeImagenes.levelbg.getHeight()/2-32, ID.Jugador, controlador));
+        abrePortales();
+        if(Hud.nivel == 1 && nivel[0]){
+            nivel[0] = false;
+            //recicladoras
+            controlador.agregaObject(new RecicAlum(1000,1000,ID.RecicladoraAluminio));
+            controlador.agregaObject(new RecicPlastico(1000,2000,ID.RecicladoraPlastico));
+            controlador.agregaObject(new RecicOrganic(2000,1000,ID.RecicladoraOrganica));
+            controlador.agregaObject(new RecicCarton(2000,2000,ID.RecicladoraCarton));
+            //basura
+            controlador.agregaObject(new Plastico(1500,1000,ID.Plastico));
+            controlador.agregaObject(new Aluminio(1500,2000,ID.Aluminio));
+            controlador.agregaObject(new Organico(1000,1500,ID.BasuraOrganica));
+            controlador.agregaObject(new Carton(2000,1500,ID.Carton));
+            //enemigos
+            controlador.agregaObject(new EnemigoBasico(750,750,ID.EnemigoBasico,controlador));
+            controlador.agregaObject(new EnemigoBasico(2250,750,ID.EnemigoBasico,controlador));
+            controlador.agregaObject(new EnemigoBasico(750,2250,ID.EnemigoBasico,controlador));
+            controlador.agregaObject(new EnemigoBasico(2250,2250,ID.EnemigoBasico,controlador));
+            //jugador
+            controlador.agregaObject(new Jugador(SetterDeImagenes.nivel1.getWidth()/2, SetterDeImagenes.nivel1.getHeight()/2, ID.Jugador, controlador));
+        }
+        else if(Hud.nivel == 2 && nivel[1]){
+            nivel[1] = false;
+            //limpia nivel pasado
+            controlador.object.clear();
+            //recicladoras
+            //basura
+            //enemigos
+            //jugador
+            controlador.agregaObject(new Jugador(SetterDeImagenes.nivel1.getWidth()/2, SetterDeImagenes.nivel1.getHeight()/2, ID.Jugador, controlador));
         }
     }
 
     //pinta el fondo correspondiente de cada nivel
     public void render(Graphics g){
         if(Hud.nivel == 1){
-            g.drawImage(SetterDeImagenes.levelbg,0, Juego.ANCHO /8,null);
+            g.drawImage(SetterDeImagenes.nivel1,0, Juego.ANCHO /8,null);
+        }
+        else if(Hud.nivel == 2){
+            g.drawImage(SetterDeImagenes.nivel2,0, Juego.ANCHO /8,null);
         }
     }
 }

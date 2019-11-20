@@ -39,7 +39,7 @@ public class EnemigoBasico extends ActorDeJuego {
 
             //if para saber si el jugador esta cerca o no
             //si no esta cerca no lo sigue
-            if(distancia <300){
+            if(distancia < 600){
                 velX = (float) ((-1.0/ distancia)*diffX);
                 velY = (float) ((-1.0/ distancia)*diffY);
                 x += velX;

@@ -45,26 +45,26 @@ public class Hud {
     //pinta el heads up display
     public void render(Graphics g){
         //rectangulo superior
-        g.setColor(Color.gray);
+        g.setColor(Color.black);
         g.fillRect(0,0, Juego.ANCHO, Juego.ALTURA /8);
-        g.setColor(Color.black);
+        g.setColor(Color.green);
         g.drawRect(0,0, Juego.ANCHO, Juego.ALTURA /8);
-        g.setColor(Color.black);
+        g.setColor(Color.green);
         //letras del hud
         g.setFont(new Font("arial",0,20));
         g.drawString("Nivel: "+ nivel, Juego.ANCHO /26, Juego.ALTURA /24);
         g.drawString("Puntaje: "+ puntaje, Juego.ANCHO /26, Juego.ALTURA /12);
         if(cargaBasura[0]) {
-            g.drawString("Cargando carton", Juego.ANCHO / 3, Juego.ALTURA / 16);
+            g.drawString("Cargando cartón", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }
         else if(cargaBasura[1]) {
-            g.drawString("Cargando plastico", Juego.ANCHO / 3, Juego.ALTURA / 16);
+            g.drawString("Cargando plástico", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }
         else if(cargaBasura[2]) {
-            g.drawString("Cargando organico", Juego.ANCHO / 3, Juego.ALTURA / 16);
+            g.drawString("Cargando orgánico", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }
         else if(cargaBasura[3]) {
-            g.drawString("Cargando aluminio", Juego.ANCHO / 3, Juego.ALTURA / 16);
+            g.drawString("Cargando aluminio", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }
         g.drawString("Escudo: ",(int)(Juego.ANCHO /1.28), Juego.ALTURA /24);
         g.drawString("Vida: ",(int)(Juego.ANCHO /1.28), Juego.ALTURA /12);

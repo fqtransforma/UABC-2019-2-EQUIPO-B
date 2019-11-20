@@ -45,7 +45,7 @@ public class Teclado extends KeyAdapter {
                 Juego.estado = Juego.ESTADO.Menu;
                 Hud.resetJuego();
                 handler.object.clear();
-                level.resetNiveles();
+                level.resetNivel();
             }
             for(int i = 0; i < handler.object.size(); i++) {
                 ActorDeJuego tempObject = handler.object.get(i);

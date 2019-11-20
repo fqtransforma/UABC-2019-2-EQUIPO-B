@@ -20,17 +20,17 @@ public class Mouse extends MouseAdapter {
 
         if(Juego.estado == Juego.ESTADO.Menu) {
             //boton de play
-            if (mouseOver(mx, my, Juego.ANCHO / 2 - 30, Juego.ALTURA / 4 - 22, 60, 25)) {
+            if (mouseOver(mx, my, Juego.ANCHO / 2 - 137, Juego.ALTURA / 3 - 55, 235, 82)) {
                 //cambia a juego y activa la captura de jugador
                 Juego.estado = Juego.ESTADO.Juego;
                 Juego.capturaJugador = true;
             //boton de leaderboards
-            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - 90, Juego.ALTURA / 3 - 22, 195, 25)) {
+            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - 255, Juego.ALTURA / 2 - 50, 470, 82)) {
                 //carga el arreglo
                 lb.leer();
                 Juego.estado = Juego.ESTADO.LeaderBoards;
             //boton de exit
-            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - 30, (int) (Juego.ALTURA / 2.5) - 22, 60, 25)) {
+            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - 137, (int) (Juego.ALTURA / 1.5) - 42, 235, 82)) {
                 System.exit(1);
             }
         }

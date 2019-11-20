@@ -16,23 +16,21 @@ public class Menu{
     //pinta menu
     public void render(Graphics g){
 
-        //pinta el fondo
-        g.drawImage(SetterDeImagenes.bg, 0, 0, null);
         //color y font y tamano a las letras
-        g.setColor(Color.white);
         g.setFont(new Font("Serif Plain", 1, 30));
 
-        //pinta el menu, play, lb y exit
+        //pinta el fondo
         if(Juego.estado == Juego.ESTADO.Menu) {
-            g.drawString("Jugar", Juego.ANCHO / 2 - 30, Juego.ALTURA / 4);
-            g.drawString("Leaderboards", Juego.ANCHO / 2 - 90, Juego.ALTURA / 3);
-            g.drawString("Salir", Juego.ANCHO / 2 - 30, (int) (Juego.ALTURA / 2.5));
+            g.drawImage(SetterDeImagenes.menuBG, 0, 0, null);
         }
+
         //pinta el arreglo de jugadores
         else if(Juego.estado == Juego.ESTADO.LeaderBoards){
+            g.drawImage(SetterDeImagenes.leaderboardsBG,0,0,null);
+            g.setColor(Color.white);
             g.drawString("Leaderboards", Juego.ANCHO / 2 - 90, Juego.ALTURA / 4);
             for(int i = 0; i < lb.lista.size(); i++){
-                g.drawString((i+1)+"--"+lb.lista.get(i).getName()+"--"+lb.lista.get(i).getScore(),
+                g.drawString((i+1)+". "+lb.lista.get(i).getName()+" "+lb.lista.get(i).getScore(),
                         Juego.ANCHO / 2 - 120, (Juego.ALTURA /3)+(i*40));
             }
         }

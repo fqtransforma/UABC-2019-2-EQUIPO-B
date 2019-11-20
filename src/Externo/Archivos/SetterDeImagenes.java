@@ -8,6 +8,10 @@ public class SetterDeImagenes {
     //cargador de imagenes
     public static BufferedImageLoader BIL = new BufferedImageLoader();
     //imagenes completas
+    public static BufferedImage menuBG = null;
+    public static BufferedImage leaderboardsBG = null;
+    public static BufferedImage nivel1 = null;
+    public static BufferedImage nivel2 = null;
     public static BufferedImage jugadorSheet = null;
     public static BufferedImage enemigoSheet = null;
     public static BufferedImage basuraSheet = null;
@@ -18,8 +22,6 @@ public class SetterDeImagenes {
     public static SpriteSheet tSheet = null;
     public static SpriteSheet rsheet = null;
     //imagenes recortadas
-    public static BufferedImage bg = null;
-    public static BufferedImage levelbg = null;
     public static BufferedImage jugador = null;
     public static BufferedImage enemigobasico = null;
     public static BufferedImage enemigoRapido = null;
@@ -36,13 +38,15 @@ public class SetterDeImagenes {
     public static void cargaImagenes(){
         try{
             //carga imagenes completas
-            jugadorSheet = BIL.loadImage("res/player.png");
-            enemigoSheet = BIL.loadImage("res/enemy.png");
-            basuraSheet = BIL.loadImage("res/trash.png");
-            recicladoraSheet = BIL.loadImage("res/recyclers.png");
-            bg = BIL.loadImage("res/bg.jpg");
-            levelbg = BIL.loadImage("res/level.jpg");
-            jefe = BIL.loadImage("res/Boss.png");
+            menuBG = BIL.loadImage("res/menuBG.png");
+            leaderboardsBG = BIL.loadImage("res/leaderboardsbg.png");
+            nivel1 = BIL.loadImage("res/nivel1.png");
+            nivel2 = BIL.loadImage("res/nivel2.png");
+            jugadorSheet = BIL.loadImage("res/Jugador.png");
+            enemigoSheet = BIL.loadImage("res/Enemigo.png");
+            basuraSheet = BIL.loadImage("res/Basura.png");
+            recicladoraSheet = BIL.loadImage("res/Recicladoras.png");
+            jefe = BIL.loadImage("res/Jefe.png");
         }catch (IOException e){
             e.printStackTrace();
         }

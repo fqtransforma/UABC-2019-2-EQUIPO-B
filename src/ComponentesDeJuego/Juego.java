@@ -132,7 +132,7 @@ public class Juego extends Canvas implements Runnable {
                 lb.addRankedPlayer();
                 lb.escribre();
                 Hud.resetJuego();
-                nivel.resetNiveles();
+                nivel.resetNivel();
                 controlador.object.clear();
             }
             capturaJugador = false;

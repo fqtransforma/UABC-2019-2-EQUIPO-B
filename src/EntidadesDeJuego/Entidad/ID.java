@@ -13,5 +13,6 @@ public enum ID {
     RecicladoraOrganica(),
     RecicladoraAluminio(),
     RecicladoraPlastico(),
-    RecicladoraCarton()
+    RecicladoraCarton(),
+    Portal()
 }
