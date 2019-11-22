@@ -167,11 +167,7 @@ public class Juego extends Canvas implements Runnable {
         }
         else if(estado == ESTADO.GameOver ) {
             //estado para cuando el jugador esta muerto
-            g.setColor(Color.black);
-            g.fillRect(0,0, ANCHO, ALTURA);
-            g.setColor(Color.white);
-            g.setFont(new Font("arial",3,100));
-            g.drawString("GAME OVER!!!", ANCHO /3, ALTURA /2);
+            g.drawImage(SetterDeImagenes.gameoverBG,0,0,null);
         }
 
         g.dispose();

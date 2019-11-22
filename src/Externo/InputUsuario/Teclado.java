@@ -47,6 +47,10 @@ public class Teclado extends KeyAdapter {
                 handler.object.clear();
                 level.resetNivel();
             }
+
+            else if(key == KeyEvent.VK_1)
+                Hud.basuraEntregada++;
+
             for(int i = 0; i < handler.object.size(); i++) {
                 ActorDeJuego tempObject = handler.object.get(i);
                 //busca al jugador
