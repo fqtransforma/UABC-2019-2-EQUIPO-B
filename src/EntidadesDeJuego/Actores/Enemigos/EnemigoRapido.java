@@ -60,9 +60,9 @@ public class EnemigoRapido extends ActorDeJuego {
     @Override
     public void render(Graphics g) {
         if(velX>0)
-            g.drawImage(SetterDeImagenes.enemigoBasico[1], (int) x, (int) y, null);
+            g.drawImage(SetterDeImagenes.enemigoRapido[1], (int) x, (int) y, null);
         else
-            g.drawImage(SetterDeImagenes.enemigoBasico[0],(int)x,(int)y,null);
+            g.drawImage(SetterDeImagenes.enemigoRapido[0],(int)x,(int)y,null);
     }
 
     //retorna rectangulo del tamano de la imagen del enemigo
