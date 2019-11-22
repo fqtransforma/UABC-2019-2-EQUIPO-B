@@ -192,12 +192,19 @@ public class Jugador extends ActorDeJuego {
     //pinta jugador
     @Override
     public void render(Graphics g) {
-        g.drawImage(SetterDeImagenes.jugador,(int)x,(int)y,null);
+        if(velX ==0 && velY == 0 || velY > 0)
+            g.drawImage(SetterDeImagenes.jugador[2],(int)x,(int)y,null);
+        else if(velY<0)
+            g.drawImage(SetterDeImagenes.jugador[0],(int)x,(int)y,null);
+        else if(velX>0)
+            g.drawImage(SetterDeImagenes.jugador[1],(int)x,(int)y,null);
+        else
+            g.drawImage(SetterDeImagenes.jugador[3],(int)x,(int)y,null);
     }
 
     //retorna tamano del jugador
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y,16,32);
+        return new Rectangle((int)x,(int)y,32,64);
     }
 }

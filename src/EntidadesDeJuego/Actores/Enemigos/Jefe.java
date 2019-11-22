@@ -56,11 +56,14 @@ public class Jefe extends ActorDeJuego {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(SetterDeImagenes.jefe,(int)x,(int)y,null);
+            if(velX>0)
+                g.drawImage(SetterDeImagenes.jefe[1],(int)x,(int)y,null);
+            else
+                g.drawImage(SetterDeImagenes.jefe[0],(int)x,(int)y,null);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y, SetterDeImagenes.jefe.getWidth()-16, SetterDeImagenes.jefe.getHeight()-16);
+        return new Rectangle((int)x,(int)y, 76,108);
     }
 }

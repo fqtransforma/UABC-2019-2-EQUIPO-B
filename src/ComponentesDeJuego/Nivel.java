@@ -1,6 +1,7 @@
 package ComponentesDeJuego;
 
 import EntidadesDeJuego.Actores.Enemigos.EnemigoRapido;
+import EntidadesDeJuego.Actores.Enemigos.Jefe;
 import EntidadesDeJuego.Actores.Portal;
 import Externo.Archivos.SetterDeImagenes;
 import EntidadesDeJuego.Actores.Enemigos.EnemigoBasico;
@@ -126,6 +127,7 @@ public class Nivel {
             // Recicladoras
             // Basura
             // Enemigos
+            controlador.agregaObject(new Jefe(500,500,ID.Jefe,controlador));
             // Jugador
             controlador.agregaObject(new Jugador(SetterDeImagenes.nivel3.getWidth()/2, SetterDeImagenes.nivel3.getHeight()/2, ID.Jugador, controlador));
         }

@@ -54,12 +54,15 @@ public class EnemigoBasico extends ActorDeJuego {
     @Override
     //pinta imagen del enemigo
     public void render(Graphics g) {
-        g.drawImage(SetterDeImagenes.enemigobasico,(int)x,(int)y,null);
+        if(velX>0)
+                g.drawImage(SetterDeImagenes.enemigoBasico[1], (int) x, (int) y, null);
+        else
+            g.drawImage(SetterDeImagenes.enemigoBasico[0],(int)x,(int)y,null);
     }
 
     //retorna un rectangulo del tamano de la imagen para la colision con el jugador
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y, 32,48);
+        return new Rectangle((int)x,(int)y, 36,52);
     }
 }

@@ -23,11 +23,13 @@ public class Portal extends ActorDeJuego {
     @Override
     public void render(Graphics g) {
         g.setColor(new Color(r.nextInt(255),0,r.nextInt(255)));
-        g.fillRect((int)x,(int)y,100,200);
+        g.fillRect((int)x,(int)y,75,150);
+        g.setColor(Color.black);
+        g.drawRect((int)x,(int)y,75,150);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y,100,200);
+        return new Rectangle((int)x,(int)y,75,150);
     }
 }

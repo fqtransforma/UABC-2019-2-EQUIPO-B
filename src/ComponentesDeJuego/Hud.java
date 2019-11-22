@@ -52,8 +52,9 @@ public class Hud {
         g.setColor(Color.green);
         //letras del hud
         g.setFont(new Font("arial",0,20));
-        g.drawString("Nivel: "+ nivel, Juego.ANCHO /26, Juego.ALTURA /24);
-        g.drawString("Puntaje: "+ puntaje, Juego.ANCHO /26, Juego.ALTURA /12);
+        g.drawString("Nivel: "+ nivel, Juego.ANCHO /26, Juego.ALTURA /25);
+        g.drawString("Puntaje: "+ puntaje, Juego.ANCHO /26, Juego.ALTURA /13);
+        g.drawString("Basura reciclada: "+ basuraEntregada, Juego.ANCHO /26, Juego.ALTURA /9);
         if(cargaBasura[0]) {
             g.drawString("Cargando cartón", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }

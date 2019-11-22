@@ -50,4 +50,5 @@ public class JugadorRankeado implements Serializable {
     public void setRecycledTrash(int recycledTrash) {
         this.recycledTrash = recycledTrash;
     }
+
 }

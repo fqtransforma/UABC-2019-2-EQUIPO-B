@@ -49,7 +49,7 @@ public class Teclado extends KeyAdapter {
             }
 
             else if(key == KeyEvent.VK_1)
-                Hud.basuraEntregada++;
+                Hud.nivel++;
 
             for(int i = 0; i < handler.object.size(); i++) {
                 ActorDeJuego tempObject = handler.object.get(i);

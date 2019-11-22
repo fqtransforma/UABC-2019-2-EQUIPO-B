@@ -29,10 +29,19 @@ public class Menu{
             g.drawImage(SetterDeImagenes.leaderboardsBG,0,0,null);
             g.setColor(Color.white);
             g.drawString("Leaderboards", Juego.ANCHO / 2 - 90, Juego.ALTURA / 4);
-            for(int i = 0; i < lb.lista.size(); i++){
-                g.drawString((i+1)+". "+lb.lista.get(i).getName()+" "+lb.lista.get(i).getScore(),
-                        Juego.ANCHO / 2 - 120, (Juego.ALTURA /3)+(i*40));
+            if(lb.lista.size() >= 10) {
+                for (int i = 0; i < 10; i++) {
+                    g.drawString((i + 1) + ". " + lb.lista.get(i).getName() + " " + lb.lista.get(i).getScore(),
+                            Juego.ANCHO / 2 - 120, (Juego.ALTURA / 3) + (i * 40));
+                }
             }
+            else{
+                for (int i = 0; i < lb.lista.size(); i++) {
+                    g.drawString((i + 1) + ". " + lb.lista.get(i).getName() + " " + lb.lista.get(i).getScore(),
+                            Juego.ANCHO / 2 - 120, (Juego.ALTURA / 3) + (i * 40));
+                }
+            }
+
         }
     }
 }
