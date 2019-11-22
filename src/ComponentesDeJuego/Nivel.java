@@ -53,7 +53,7 @@ public class Nivel {
             portal[0] = false;
             controlador.agregaObject(new Portal(1500,1500, ID.Portal));
         }
-        else if(Hud.basuraEntregada == 16 && Hud.nivel == 2 && portal[1]) {
+        else if(Hud.basuraEntregada == 12 && Hud.nivel == 2 && portal[1]) {
             portal[1] = false;
             controlador.agregaObject(new Portal(1500, 1500, ID.Portal));
         }
