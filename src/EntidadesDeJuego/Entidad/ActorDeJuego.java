@@ -8,7 +8,7 @@ public abstract class ActorDeJuego {
 
     protected float x, y;
     protected ID id;
-    protected float velX, velY;
+    public float velX, velY;
 
     public ActorDeJuego(float x, float y, ID id) {
         this.x = x;
@@ -51,7 +51,7 @@ public abstract class ActorDeJuego {
     public float getVelX() {
         return velX;
     }
-    public float velY() {
+    public float getvelY() {
         return velY;
     }
 }

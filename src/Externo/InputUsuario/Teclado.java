@@ -56,10 +56,10 @@ public class Teclado extends KeyAdapter {
                 //busca al jugador
                 if(tempObject.getID() == ID.Jugador) {
                     //mueve jugador
-                    if(key == KeyEvent.VK_W) {tempObject.setVelY(-Hud.velocidad); keyDown[0] = true;}
-                    if(key == KeyEvent.VK_S) {tempObject.setVelY(Hud.velocidad); keyDown[1] = true;}
-                    if(key == KeyEvent.VK_D) {tempObject.setVelX(Hud.velocidad); keyDown[2] = true;}
-                    if(key == KeyEvent.VK_A) {tempObject.setVelX(-Hud.velocidad); keyDown[3] = true;}
+                    if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {tempObject.setVelY(-Hud.velocidad); keyDown[0] = true;}
+                    if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {tempObject.setVelY(Hud.velocidad); keyDown[1] = true;}
+                    if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {tempObject.setVelX(Hud.velocidad); keyDown[2] = true;}
+                    if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {tempObject.setVelX(-Hud.velocidad); keyDown[3] = true;}
                 }
             }
         }
@@ -80,10 +80,10 @@ public class Teclado extends KeyAdapter {
                 //busca jugador
                 if(tempObject.getID() == ID.Jugador) {
                     //detiene jugador
-                    if(key == KeyEvent.VK_W) keyDown[0] = false;
-                    if(key == KeyEvent.VK_S) keyDown[1] = false;
-                    if(key == KeyEvent.VK_D) keyDown[2] = false;
-                    if(key == KeyEvent.VK_A) keyDown[3] = false;
+                    if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) keyDown[0] = false;
+                    if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) keyDown[1] = false;
+                    if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) keyDown[2] = false;
+                    if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) keyDown[3] = false;
 
                     if(!keyDown[0] && !keyDown[1]) tempObject.setVelY(0);
                     if(!keyDown[2] && !keyDown[3]) tempObject.setVelX(0);
