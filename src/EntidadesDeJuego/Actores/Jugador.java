@@ -1,5 +1,6 @@
 package EntidadesDeJuego.Actores;
 
+import Externo.Archivos.AudioPlayer;
 import Externo.Archivos.SetterDeImagenes;
 import ComponentesDeJuego.Juego;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
@@ -29,6 +30,7 @@ public class Jugador extends ActorDeJuego {
 
             if(tempObject.getID() == ID.EnemigoBasico) {
                 if(getBounds().intersects(tempObject.getBounds())) {
+                    AudioPlayer.playSound("res/herir.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=2;
                     else
@@ -37,6 +39,7 @@ public class Jugador extends ActorDeJuego {
             }
             else if(tempObject.getID() == ID.EnemigoRapido){
                 if(getBounds().intersects(tempObject.getBounds())) {
+                    AudioPlayer.playSound("res/herir.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=1;
                     else
@@ -46,6 +49,7 @@ public class Jugador extends ActorDeJuego {
 
             else if(tempObject.getID() == ID.Jefe){
                 if(getBounds().intersects(tempObject.getBounds())) {
+                    AudioPlayer.playSound("res/herir.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=3;
                     else
@@ -76,6 +80,7 @@ public class Jugador extends ActorDeJuego {
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
+                    AudioPlayer.playSound("res/sonido/plastico.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[1] = true;
@@ -96,6 +101,7 @@ public class Jugador extends ActorDeJuego {
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
+                    AudioPlayer.playSound("res/sonido/metal.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[3] = true;
@@ -124,6 +130,7 @@ public class Jugador extends ActorDeJuego {
             Hud.vida += 10;
         }
         else if(id == ID.RecicladoraAluminio && Hud.cargaBasura[3]){
+            AudioPlayer.playSound("res/sonido/metal2.wav");
             Hud.cargaBasura[3] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
