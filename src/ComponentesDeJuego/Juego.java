@@ -2,7 +2,7 @@ package ComponentesDeJuego;
 
 import Externo.Archivos.SetterDeImagenes;
 import Externo.Archivos.Leaderboards;
-import Externo.InputUsuario.MovimientoJugador;
+import Externo.InputUsuario.TecladoJugador;
 import Externo.InputUsuario.Teclado;
 import Externo.InputUsuario.Mouse;
 
@@ -27,7 +27,7 @@ public class Juego extends Canvas implements Runnable {
     private Hud hud;
     private Nivel nivel;
     private Camara camara;
-    private MovimientoJugador mj;
+    private TecladoJugador mj;
     private Teclado teclado;
     private Mouse mouse;
 
@@ -58,7 +58,7 @@ public class Juego extends Canvas implements Runnable {
         hud = new Hud();
         nivel = new Nivel(controlador);
         camara = new Camara(0,0, controlador);
-        mj = new MovimientoJugador();
+        mj = new TecladoJugador();
         teclado = new Teclado(controlador, nivel);
         mouse = new Mouse(lb);
         this.addKeyListener(mj);

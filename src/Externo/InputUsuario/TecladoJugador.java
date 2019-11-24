@@ -3,7 +3,7 @@ package Externo.InputUsuario;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class MovimientoJugador extends KeyAdapter {
+public class TecladoJugador extends KeyAdapter {
 
     public static boolean[] teclas = new boolean[4];
 

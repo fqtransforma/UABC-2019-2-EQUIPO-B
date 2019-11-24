@@ -6,7 +6,7 @@ import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
 import ComponentesDeJuego.Hud;
 import EntidadesDeJuego.Entidad.ID;
-import Externo.InputUsuario.MovimientoJugador;
+import Externo.InputUsuario.TecladoJugador;
 
 import java.awt.*;
 
@@ -106,55 +106,45 @@ public class Jugador extends ActorDeJuego {
         }
     }
 
-    //detecta colision con recicladoras y valida que estemos cargando el material correcto
-    public void colisionRecicladora(){
-        for(int i = 0; i < controlador.object.size(); i++) {
-
-            ActorDeJuego tempObject = controlador.object.get(i);
-            if (tempObject.getID() == ID.RecicladoraCarton && Hud.cargaBasura[0]){
-                if(getBounds().intersects(tempObject.getBounds())) {
-                    Hud.cargaBasura[0] = false;
-                    Hud.puntaje += 90;
-                    Hud.basuraEntregada++;
-                    Hud.velocidad += 0.2;
-                }
-            }
-            else if (tempObject.getID() == ID.RecicladoraPlastico && Hud.cargaBasura[1]){
-                if(getBounds().intersects(tempObject.getBounds())) {
-                    Hud.cargaBasura[1] = false;
-                    Hud.puntaje += 90;
-                    Hud.basuraEntregada++;
-                }
-            } // Pendiente las balas
-            else if (tempObject.getID() == ID.RecicladoraOrganica && Hud.cargaBasura[2]){
-                if(getBounds().intersects(tempObject.getBounds())) {
-                    Hud.cargaBasura[2] = false;
-                    Hud.puntaje += 90;
-                    Hud.basuraEntregada++;
-                    Hud.vida += 10;
-                }
-            }
-            else if (tempObject.getID() == ID.RecicladoraAluminio && Hud.cargaBasura[3]){
-                if(getBounds().intersects(tempObject.getBounds())) {
-                    Hud.cargaBasura[3] = false;
-                    Hud.puntaje += 90;
-                    Hud.basuraEntregada++;
-                    Hud.escudo += 10;
-                }
-            }
+    public void recompensaRecicladora(ID id){
+        if(id == ID.RecicladoraCarton && Hud.cargaBasura[0]){
+            Hud.cargaBasura[0] = false;
+            Hud.puntaje += 90;
+            Hud.basuraEntregada++;
+            Hud.velocidadMAX += 0.5;
         }
-
+        else if(id == ID.RecicladoraPlastico && Hud.cargaBasura[1]){
+            Hud.cargaBasura[1] = false;
+            Hud.puntaje += 90;
+            Hud.basuraEntregada++;
+            Hud.escudo +=5;
+        }
+        else if(id == ID.RecicladoraOrganica && Hud.cargaBasura[2]){
+            Hud.cargaBasura[2] = false;
+            Hud.puntaje += 90;
+            Hud.basuraEntregada++;
+            Hud.vida += 10;
+        }
+        else if(id == ID.RecicladoraAluminio && Hud.cargaBasura[3]){
+            Hud.cargaBasura[3] = false;
+            Hud.puntaje += 90;
+            Hud.basuraEntregada++;
+            Hud.escudo += 10;
+        }
     }
 
-    public void colisionObstaculo(){
+    //detecta colision con recicladoras y valida que estemos cargando el material correcto
+    public void colisionRecicladora(){
 
         for(int i = 0; i < controlador.object.size(); i++){
 
             ActorDeJuego tempObject = controlador.object.get(i);
 
-            if(tempObject.getID() == ID.RecicladoraAluminio || tempObject.getID() == ID.RecicladoraPlastico
-            || tempObject.getID() == ID.RecicladoraCarton || tempObject.getID() == ID.RecicladoraOrganica){
+            if(tempObject.getID() == ID.RecicladoraOrganica || tempObject.getID() == ID.RecicladoraPlastico
+            || tempObject.getID() == ID.RecicladoraCarton || tempObject.getID() == ID.RecicladoraAluminio){
+
                 if(getHorizontalBounds().intersects(tempObject.getBounds())){
+                    recompensaRecicladora(tempObject.getID());
                     if(velX > 0){
                         velX = 0;
                         x = tempObject.getX() - ancho;
@@ -164,7 +154,9 @@ public class Jugador extends ActorDeJuego {
                         x = tempObject.getX() + 96;
                     }
                 }
+
                 if(getVerticalBounds().intersects(tempObject.getBounds())){
+                    recompensaRecicladora(tempObject.getID());
                     if(velY > 0){
                         velY = 0;
                         y = tempObject.getY() - altura;
@@ -197,25 +189,27 @@ public class Jugador extends ActorDeJuego {
         y+=velY;
 
         //clamp para limitar velocidad
-        velX = Juego.clamp(velX,-3,3);
-        velY = Juego.clamp(velY,-3,3);
+        velX = Juego.clamp(velX,-Hud.velocidadMAX,Hud.velocidadMAX);
+        velY = Juego.clamp(velY,-Hud.velocidadMAX,Hud.velocidadMAX);
+
         //clamps para que no salga del nivel
         x = Juego.clamp(x,500, SetterDeImagenes.nivel1.getWidth()-500);
         y = Juego.clamp(y,500, SetterDeImagenes.nivel1.getHeight()-500);
 
-        if(MovimientoJugador.teclas[0])
+        //movimiento horizontal
+        if(TecladoJugador.teclas[0])
             velX+=aceleracion;
-        else if(MovimientoJugador.teclas[1])
+        else if(TecladoJugador.teclas[1])
             velX-=aceleracion;
-        else if(!MovimientoJugador.teclas[0] && !MovimientoJugador.teclas[1]){
+        else if(!TecladoJugador.teclas[0] && !TecladoJugador.teclas[1]){
             velX = 0;
         }
-        //vertical movement
-        if(MovimientoJugador.teclas[3])
+        //movimiento vertical
+        if(TecladoJugador.teclas[3])
             velY+=aceleracion;
-        else if(MovimientoJugador.teclas[2])
+        else if(TecladoJugador.teclas[2])
             velY-=aceleracion;
-        else if(!MovimientoJugador.teclas[2] && !MovimientoJugador.teclas[3]){
+        else if(!TecladoJugador.teclas[2] && !TecladoJugador.teclas[3]){
             velY = 0;
         }
 
@@ -223,7 +217,6 @@ public class Jugador extends ActorDeJuego {
         colisionEnemigo();
         colisionBasura();
         colisionRecicladora();
-        colisionObstaculo();
         colisionPortal();
     }
 
@@ -247,6 +240,7 @@ public class Jugador extends ActorDeJuego {
         return new Rectangle((int)x,(int)y,ancho,altura);
     }
 
+    //rectangulo para detectar colisiones con obstaculos yendo horizontal
     public Rectangle getHorizontalBounds(){
 
         float bx = x + velX;
@@ -257,6 +251,7 @@ public class Jugador extends ActorDeJuego {
         return new Rectangle((int)bx,(int)by,(int)bw,(int)bh);
     }
 
+    //rectangulo para detectar colisiones con obstaculos yendo vertical
     public Rectangle getVerticalBounds(){
 
         float bx = x;

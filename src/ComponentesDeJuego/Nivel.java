@@ -79,10 +79,10 @@ public class Nivel {
             controlador.agregaObject(new Organico(1000,1500, ID.BasuraOrganica));
             controlador.agregaObject(new Carton(2000,1500, ID.Carton));
             // Enemigos
-            //controlador.agregaObject(new EnemigoBasico(750,750, ID.EnemigoBasico, controlador));
-            //controlador.agregaObject(new EnemigoBasico(2250,750, ID.EnemigoBasico, controlador));
-            //controlador.agregaObject(new EnemigoBasico(750,2250, ID.EnemigoBasico, controlador));
-            //controlador.agregaObject(new EnemigoBasico(2250,2250, ID.EnemigoBasico, controlador));
+            controlador.agregaObject(new EnemigoBasico(750,750, ID.EnemigoBasico, controlador));
+            controlador.agregaObject(new EnemigoBasico(2250,750, ID.EnemigoBasico, controlador));
+            controlador.agregaObject(new EnemigoBasico(750,2250, ID.EnemigoBasico, controlador));
+            controlador.agregaObject(new EnemigoBasico(2250,2250, ID.EnemigoBasico, controlador));
             // Jugador
             controlador.agregaObject(new Jugador(SetterDeImagenes.nivel1.getWidth()/2, SetterDeImagenes.nivel1.getHeight()/2, ID.Jugador, controlador));
         }
