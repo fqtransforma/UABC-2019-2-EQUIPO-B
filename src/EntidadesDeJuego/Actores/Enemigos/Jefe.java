@@ -11,7 +11,6 @@ public class Jefe extends ActorDeJuego {
 
     private Controlador controlador;
     private ActorDeJuego jugador;
-    private float diffX, diffY, distancia;
 
     public Jefe(float x, float y, ID id, Controlador controlador) {
         super(x, y, id);
@@ -19,7 +18,7 @@ public class Jefe extends ActorDeJuego {
         encuentraJugador();
     }
 
-    public void encuentraJugador(){
+    private void encuentraJugador(){
         for(int i = 0; i < controlador.object.size(); i++){
             if(controlador.object.get(i).getID() == ID.Jugador)
                 jugador = controlador.object.get(i);
@@ -28,6 +27,7 @@ public class Jefe extends ActorDeJuego {
 
     @Override
     public void tick() {
+        float diffX, diffY, distancia;
         //algoritmo para saber hacia donde esta el jugador
         if(jugador !=null) {
             diffX = x - jugador.getX();

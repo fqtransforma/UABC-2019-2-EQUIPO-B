@@ -15,8 +15,6 @@ public class Jugador extends ActorDeJuego {
     private Controlador controlador;
     private int ancho = SetterDeImagenes.jugador[0].getWidth();
     private int altura = SetterDeImagenes.jugador[0].getHeight();
-    private float aceleracion = 1f;
-    private float desaceleracion = 0.5f;
 
     public Jugador(int x, int y, ID id, Controlador controlador) {
         super(x, y, id);
@@ -106,7 +104,7 @@ public class Jugador extends ActorDeJuego {
         }
     }
 
-    public void recompensaRecicladora(ID id){
+    private void recompensaRecicladora(ID id){
         if(id == ID.RecicladoraCarton && Hud.cargaBasura[0]){
             Hud.cargaBasura[0] = false;
             Hud.puntaje += 90;
@@ -134,7 +132,7 @@ public class Jugador extends ActorDeJuego {
     }
 
     //detecta colision con recicladoras y valida que estemos cargando el material correcto
-    public void colisionRecicladora(){
+    private void colisionRecicladora(){
 
         for(int i = 0; i < controlador.object.size(); i++){
 
@@ -170,7 +168,7 @@ public class Jugador extends ActorDeJuego {
         }
     }
 
-    public void colisionPortal(){
+    private void colisionPortal(){
         for(int i = 0; i < controlador.object.size(); i++){
             ActorDeJuego tempObject = controlador.object.get(i);
             if(tempObject.getID() == ID.Portal){
@@ -198,17 +196,17 @@ public class Jugador extends ActorDeJuego {
 
         //movimiento horizontal
         if(TecladoJugador.teclas[0])
-            velX+=aceleracion;
+            velX+=1;
         else if(TecladoJugador.teclas[1])
-            velX-=aceleracion;
+            velX-=1;
         else if(!TecladoJugador.teclas[0] && !TecladoJugador.teclas[1]){
             velX = 0;
         }
         //movimiento vertical
         if(TecladoJugador.teclas[3])
-            velY+=aceleracion;
+            velY+=1;
         else if(TecladoJugador.teclas[2])
-            velY-=aceleracion;
+            velY-=1;
         else if(!TecladoJugador.teclas[2] && !TecladoJugador.teclas[3]){
             velY = 0;
         }
@@ -241,7 +239,7 @@ public class Jugador extends ActorDeJuego {
     }
 
     //rectangulo para detectar colisiones con obstaculos yendo horizontal
-    public Rectangle getHorizontalBounds(){
+    private Rectangle getHorizontalBounds(){
 
         float bx = x + velX;
         float by = y;
@@ -252,7 +250,7 @@ public class Jugador extends ActorDeJuego {
     }
 
     //rectangulo para detectar colisiones con obstaculos yendo vertical
-    public Rectangle getVerticalBounds(){
+    private Rectangle getVerticalBounds(){
 
         float bx = x;
         float by = y + velY;

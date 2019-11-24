@@ -5,8 +5,6 @@ import ComponentesDeJuego.Juego;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Collection;
-import java.util.Collections;
 
 public class Mouse extends MouseAdapter {
 

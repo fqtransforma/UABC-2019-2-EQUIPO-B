@@ -9,7 +9,7 @@ public class Menu{
 
     private Leaderboards lb;
 
-    public Menu(Leaderboards lb){
+    Menu(Leaderboards lb){
         this.lb = lb;
     }
 

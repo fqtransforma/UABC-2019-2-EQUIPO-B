@@ -12,7 +12,7 @@ public class JugadorRankeado implements Serializable {
 
     //agarramos los datos que queremos guardar del hud para mostrar en leaderboards
     //el unico dato extra es el nombre del jugador
-    public JugadorRankeado(String name) {
+    JugadorRankeado(String name) {
         this.name = name;
         this.score = Hud.puntaje;
         this.level = Hud.nivel;

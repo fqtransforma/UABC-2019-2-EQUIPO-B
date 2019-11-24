@@ -17,16 +17,14 @@ import EntidadesDeJuego.Actores.TiposBasura.Plastico;
 import EntidadesDeJuego.Entidad.ID;
 
 import java.awt.*;
-import java.util.Random;
 
 public class Nivel {
 
     private Controlador controlador;
     private boolean[] portal = new boolean[5];
     private boolean[] nivel = new boolean[5];
-    private Random r;
 
-    public Nivel(Controlador handler) {
+    Nivel(Controlador handler) {
 
         this.controlador = handler;
 
@@ -35,7 +33,6 @@ public class Nivel {
             portal[i] = true;
             nivel[i] = true;
         }
-        r = new Random();
     }
 
     // Resetea booleandos para que objetos puedan volver a aparecer
@@ -48,7 +45,7 @@ public class Nivel {
         }
     }
     
-    public void abrePortales() {
+    private void abrePortales() {
 
         if(Hud.basuraEntregada == 4 && Hud.nivel == 1 && portal[0]) {
             portal[0] = false;

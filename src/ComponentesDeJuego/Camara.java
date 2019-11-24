@@ -9,7 +9,7 @@ public class Camara {
     private Controlador handler;
     private ActorDeJuego tempPlayer = null;
 
-    public Camara(int x, int y, Controlador handler){
+    Camara(int x, int y, Controlador handler){
         this.x = x;
         this.y = y;
         this.handler = handler;

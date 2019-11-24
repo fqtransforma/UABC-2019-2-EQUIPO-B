@@ -11,7 +11,6 @@ public class EnemigoRapido extends ActorDeJuego {
 
     private Controlador controlador;
     private ActorDeJuego jugador;
-    private float diffX, diffY, distancia;
 
     public EnemigoRapido(int x, int y, ID id, Controlador controlador) {
         super(x, y, id);
@@ -20,7 +19,7 @@ public class EnemigoRapido extends ActorDeJuego {
     }
 
     //buscac jugador para poder seguirlo
-    public void encuentraJugador(){
+    private void encuentraJugador(){
         for(int i = 0; i < controlador.object.size(); i++){
             if(controlador.object.get(i).getID() == ID.Jugador)
                 jugador = controlador.object.get(i);
@@ -29,6 +28,7 @@ public class EnemigoRapido extends ActorDeJuego {
 
     @Override
     public void tick() {
+        float diffX, diffY, distancia;
         if(jugador !=null) {
             diffX = x - jugador.getX();
             diffY = y - jugador.getY();

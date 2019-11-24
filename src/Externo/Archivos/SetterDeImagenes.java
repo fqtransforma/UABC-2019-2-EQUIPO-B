@@ -20,12 +20,6 @@ public class SetterDeImagenes {
     private static BufferedImage jefeSheet = null;
     private static BufferedImage basuraSheet = null;
     private static BufferedImage recicladoraSheet = null;
-    // Recortador de imágenes
-    private static SpriteSheet jSheet = null;
-    private static SpriteSheet eSheet = null;
-    private static SpriteSheet JSheet = null;
-    private static SpriteSheet tSheet = null;
-    private static SpriteSheet rsheet = null;
     // Imágenes recortadas
     public static BufferedImage[] jugador = new BufferedImage[4];
     public static BufferedImage[] enemigoBasico = new BufferedImage[2];
@@ -72,8 +66,8 @@ public class SetterDeImagenes {
             e.printStackTrace();
         }
         // Inicializa los recortadores
-        tSheet = new SpriteSheet(basuraSheet);
-        rsheet = new SpriteSheet(recicladoraSheet);
+        SpriteSheet tSheet = new SpriteSheet(basuraSheet);
+        SpriteSheet rsheet = new SpriteSheet(recicladoraSheet);
         // Imágenes recortadas
         organico = tSheet.grabImage(1,1,32,32);
         aluminio = tSheet.grabImage(2,1,32,32);
@@ -96,7 +90,7 @@ public class SetterDeImagenes {
             e.printStackTrace();
         }
         // Inicializa los recortadores
-        eSheet = new SpriteSheet(enemigoBSheet);
+        SpriteSheet eSheet = new SpriteSheet(enemigoBSheet);
         // Imágenes recortadas
         enemigoBasico[0] = eSheet.grabImage(2,4,48,64);
         enemigoBasico[1] = eSheet.grabImage(2,2,48,64);
@@ -106,20 +100,20 @@ public class SetterDeImagenes {
         enemigoRapido[0] = eSheet.grabImage(2,4,48,64);
         enemigoRapido[1] = eSheet.grabImage(2,2,48,64);
 
-        JSheet = new SpriteSheet(jefeSheet);
+        SpriteSheet JSheet = new SpriteSheet(jefeSheet);
 
         jefe[0] = JSheet.grabImage(2,4,96,128);
         jefe[1] = JSheet.grabImage(2,2,96,128);
     }
 
-    public static void cargaJugador(){
+    private static void cargaJugador(){
         try{
             jugadorSheet = BIL.loadImage("res/jugador.png");
         }catch (IOException e){
             e.printStackTrace();
         }
 
-        jSheet = new SpriteSheet(jugadorSheet);
+        SpriteSheet jSheet = new SpriteSheet(jugadorSheet);
         for(int i = 0; i < 4; i++)
             jugador[i] = jSheet.grabImage(i+1,1,32,64);
     }

@@ -5,10 +5,10 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Pantalla extends Canvas{
+class Pantalla extends Canvas{
 
     //la pantalla de nuestro juego
-    public Pantalla(int width, int height, String title, Juego game) {
+    Pantalla(int width, int height, String title, Juego game) {
         JFrame frame = new JFrame(title);
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));

@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 
 public class Juego extends Canvas implements Runnable {
 
-    private static Toolkit tk = Toolkit.getDefaultToolkit();
+    //private static Toolkit tk = Toolkit.getDefaultToolkit();
     //public static final int WIDTH = ((int)tk.getScreenSize().getWidth());
     //public static final int HEIGHT = ((int)tk.getScreenSize().getHeight());
     public static final int ANCHO = 1024;
