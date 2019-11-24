@@ -51,7 +51,7 @@ public class Teclado extends KeyAdapter {
             else if(key == KeyEvent.VK_1)
                 Hud.nivel++;
 
-            for(int i = 0; i < handler.object.size(); i++) {
+            /*for(int i = 0; i < handler.object.size(); i++) {
                 ActorDeJuego tempObject = handler.object.get(i);
                 //busca al jugador
                 if(tempObject.getID() == ID.Jugador) {
@@ -62,6 +62,8 @@ public class Teclado extends KeyAdapter {
                     if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {tempObject.setVelX(-Hud.velocidad); keyDown[3] = true;}
                 }
             }
+
+             */
         }
 
         else if(Juego.estado == Juego.ESTADO.GameOver){
@@ -74,7 +76,7 @@ public class Teclado extends KeyAdapter {
 
         int key = e.getKeyCode();
 
-        if(Juego.estado == Juego.ESTADO.Juego) {
+        /*if(Juego.estado == Juego.ESTADO.Juego) {
             for(int i = 0; i < handler.object.size(); i++) {
                 ActorDeJuego tempObject = handler.object.get(i);
                 //busca jugador
@@ -90,5 +92,7 @@ public class Teclado extends KeyAdapter {
                 }
             }
         }
+
+         */
     }
 }

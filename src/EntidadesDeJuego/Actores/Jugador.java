@@ -6,6 +6,7 @@ import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
 import ComponentesDeJuego.Hud;
 import EntidadesDeJuego.Entidad.ID;
+import Externo.InputUsuario.MovimientoJugador;
 
 import java.awt.*;
 
@@ -14,6 +15,8 @@ public class Jugador extends ActorDeJuego {
     private Controlador controlador;
     private int ancho = SetterDeImagenes.jugador[0].getWidth();
     private int altura = SetterDeImagenes.jugador[0].getHeight();
+    private float aceleracion = 1f;
+    private float desaceleracion = 0.5f;
 
     public Jugador(int x, int y, ID id, Controlador controlador) {
         super(x, y, id);
@@ -200,11 +203,27 @@ public class Jugador extends ActorDeJuego {
         x = Juego.clamp(x,500, SetterDeImagenes.nivel1.getWidth()-500);
         y = Juego.clamp(y,500, SetterDeImagenes.nivel1.getHeight()-500);
 
+        if(MovimientoJugador.teclas[0])
+            velX+=aceleracion;
+        else if(MovimientoJugador.teclas[1])
+            velX-=aceleracion;
+        else if(!MovimientoJugador.teclas[0] && !MovimientoJugador.teclas[1]){
+            velX = 0;
+        }
+        //vertical movement
+        if(MovimientoJugador.teclas[3])
+            velY+=aceleracion;
+        else if(MovimientoJugador.teclas[2])
+            velY-=aceleracion;
+        else if(!MovimientoJugador.teclas[2] && !MovimientoJugador.teclas[3]){
+            velY = 0;
+        }
+
         //detecta todas las colisiones
         colisionEnemigo();
         colisionBasura();
         colisionRecicladora();
-        //colisionObstaculo();
+        colisionObstaculo();
         colisionPortal();
     }
 
