@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.Recicladoras;
 
-import Externo.Archivos.SetterDeImagenes;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import EntidadesDeJuego.Entidad.ID;
 
@@ -19,11 +19,12 @@ public class RecicOrganic extends ActorDeJuego {
     @Override
     public void render(Graphics g) {
         g.drawImage(SetterDeImagenes.recicOrganic,(int)x,(int)y,null);
+        g.setColor(Color.green);
+        g.fillRect((int)x,(int)y,200,128);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y, SetterDeImagenes.recicOrganic.getWidth(),
-                SetterDeImagenes.recicOrganic.getHeight());
+        return new Rectangle((int)x,(int)y, 200,128);
     }
 }

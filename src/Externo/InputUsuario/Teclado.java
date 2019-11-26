@@ -4,9 +4,6 @@ import ComponentesDeJuego.Juego;
 import ComponentesDeJuego.Controlador;
 import ComponentesDeJuego.Hud;
 import ComponentesDeJuego.Nivel;
-import EntidadesDeJuego.Entidad.ActorDeJuego;
-import EntidadesDeJuego.Entidad.ID;
-import Externo.Archivos.Leaderboards;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

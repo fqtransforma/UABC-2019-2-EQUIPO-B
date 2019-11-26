@@ -1,7 +1,9 @@
 package ComponentesDeJuego;
 
-import Externo.Archivos.SetterDeImagenes;
-import Externo.Archivos.Leaderboards;
+import Externo.Archivos.Sonido.AudioPlayer;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Jugador.Leaderboards;
+import Externo.Archivos.Sonido.Sonido;
 import Externo.InputUsuario.TecladoJugador;
 import Externo.InputUsuario.Teclado;
 import Externo.InputUsuario.Mouse;
@@ -20,7 +22,7 @@ public class Juego extends Canvas implements Runnable {
     private boolean corriendo = false;
     public static boolean capturaJugador;
 
-    //partes del juego
+    // Partes del juego
     private Controlador controlador;
     private Leaderboards lb;
     private Menu menu;
@@ -30,8 +32,9 @@ public class Juego extends Canvas implements Runnable {
     private TecladoJugador mj;
     private Teclado teclado;
     private Mouse mouse;
+    private Sonido sonidoMenu = new Sonido("res/sonido/Menu.wav");
 
-    //estados que controlan el juego
+    // Estados que controlan el juego
     public enum ESTADO {
         Menu(),
         Juego(),
@@ -39,17 +42,17 @@ public class Juego extends Canvas implements Runnable {
         GameOver()
     }
 
-    //estado inicial
+    // Estado inicial
     public static ESTADO estado = ESTADO.Menu;
 
-    //constructor del juego
+    // Constructor del juego
     public Juego(){
         init();
         new Pantalla(ANCHO, ALTURA,"Game",this);
         start();
     }
 
-    //inicizizador de las partes del juego
+    // Inicizizador de las partes del juego
     private void init(){
         SetterDeImagenes.cargaImagenes();
         controlador = new Controlador();
@@ -65,17 +68,16 @@ public class Juego extends Canvas implements Runnable {
         this.addMouseListener(mouse);
         this.addKeyListener(teclado);
         lb.leer();
-        //hhaha
     }
 
-    //inicializa hilo
+    // Inicializa hilo
     private synchronized void start(){
         thread = new Thread(this);
         thread.start();
         corriendo = true;
     }
 
-    //detiene hilo
+    // Detiene hilo
     private synchronized void stop(){
         try{
             thread.join();
@@ -85,7 +87,7 @@ public class Juego extends Canvas implements Runnable {
         }
     }
 
-    //ciclo del juego
+    // Ciclo del juego
     public void run() {
         this.requestFocus();
         long lastTime = System.nanoTime();
@@ -109,29 +111,32 @@ public class Juego extends Canvas implements Runnable {
 
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                //System.out.println("FPS: " + frames);
+                System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
         stop();
     }
 
-    //metodo que maneja la logica del juego
+    // Método que maneja la logica del juego
     private void tick(){
 
-        if(estado == ESTADO.Juego) {
-            //cambia a game over si se muere el jugador
+        if(estado == ESTADO.Menu){
+            sonidoMenu.play();
+        }
+        else if(estado == ESTADO.Juego) {
+            // Cambia a game over si se muere el jugador
             if(Hud.vida == 0){
                 estado = ESTADO.GameOver;
             }
-            //corre las variables de los componentes del juego
+            // Corre las variables de los componentes del juego
             nivel.tick();
             controlador.tick();
             hud.tick();
             camara.tick();
         }
         else if(estado == ESTADO.GameOver){
-            //agrega jugador al arreglo, lo escribe y reinicia el juego
+            // Agrega jugador al arreglo, lo escribe y reinicia el juego
             if(capturaJugador) {
                 lb.addRankedPlayer();
                 lb.escribre();
@@ -143,7 +148,7 @@ public class Juego extends Canvas implements Runnable {
         }
     }
 
-    //metodo que pinta el juego
+    // Método que pinta el juego
     private void render(){
         BufferStrategy bs = this.getBufferStrategy();
         if(bs == null){
@@ -153,24 +158,24 @@ public class Juego extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D)g;
 
-        //pinta menu
+        // Pinta menú
         if(estado == ESTADO.Menu || estado == ESTADO.LeaderBoards) {
             menu.render(g);
         }
-        //pinta hud, nivel y actores
+        // Pinta hud, nivel y actores
         else if(estado == ESTADO.Juego){
             g.setColor(Color.black);
             g.fillRect(0,0, ANCHO, ALTURA);
-            //g2d nos hace movernos con el jugador
+            // g2d nos hace movernos con el jugador
             g2d.translate(-camara.getX(),-camara.getY());
             nivel.render(g);
             controlador.render(g);
             g2d.translate(camara.getX(), camara.getY());
-            //pinta hud
+            // Pinta hud
             hud.render(g);
         }
         else if(estado == ESTADO.GameOver ) {
-            //estado para cuando el jugador esta muerto
+            // Estado para cuando el jugador está muerto
             g.drawImage(SetterDeImagenes.gameoverBG,0,0,null);
         }
 
@@ -178,7 +183,7 @@ public class Juego extends Canvas implements Runnable {
         bs.show();
     }
 
-    //metodo para limitar una variable a un valor minimo y maximo
+    // Método para limitar una variable a un valor minimo y maximo
     public static float clamp(float var, float min, float max){
         if(var >= max)
             return (var = max);
@@ -187,7 +192,7 @@ public class Juego extends Canvas implements Runnable {
         else return var;
     }
 
-    //
+
     public static void main(String[] args) {
         new Juego();
     }

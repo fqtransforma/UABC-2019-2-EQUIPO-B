@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.Enemigos;
 
-import Externo.Archivos.SetterDeImagenes;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
 import ComponentesDeJuego.Controlador;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import EntidadesDeJuego.Entidad.ID;

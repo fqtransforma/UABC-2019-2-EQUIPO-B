@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.Enemigos;
 
-import Externo.Archivos.SetterDeImagenes;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
 import EntidadesDeJuego.Entidad.ID;
@@ -39,9 +39,17 @@ public class EnemigoBasico extends ActorDeJuego {
 
             //if para saber si el jugador esta cerca o no
             //si no esta cerca no lo sigue
-            if(distancia < 600){
+            if(distancia < 300){
                 velX = (float) ((-1.0/ distancia)*diffX);
                 velY = (float) ((-1.0/ distancia)*diffY);
+                if(velX<0)
+                    velX-=0.8;
+                else //si se mueve en x, agregar velocidad positiva
+                    velX+=0.8;
+                if(velY<0) // si se mueve en -y, agregar velocidad negativa
+                    velY-=0.8;
+                else //si se mueve en y, agregar velocidad positiva
+                    velY+=0.8;
                 x += velX;
                 y += velY;
             }

@@ -7,7 +7,7 @@ public class Hud {
     public static int nivel = 1;
     public static int vida = 100;
     public static int escudo = 0;
-    public static float velocidadMAX = 3;
+    public static float velocidadMAX = 2.5f;
     public static boolean[] cargaBasura = new boolean[4];
     public static int puntaje = 0;
     public static int basuraEntregada = 0;
@@ -25,7 +25,7 @@ public class Hud {
         nivel = 1;
         vida = 100;
         escudo = 0;
-        velocidadMAX = 3;
+        velocidadMAX = 2.5f;
         cargaBasura[0] = false;
         cargaBasura[1] = false;
         cargaBasura[2] = false;

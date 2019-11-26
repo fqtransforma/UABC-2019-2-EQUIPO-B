@@ -1,7 +1,7 @@
 package EntidadesDeJuego.Actores;
 
-import Externo.Archivos.AudioPlayer;
-import Externo.Archivos.SetterDeImagenes;
+import Externo.Archivos.Sonido.AudioPlayer;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
 import ComponentesDeJuego.Juego;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
@@ -18,28 +18,34 @@ public class Jugador extends ActorDeJuego {
     private int altura = SetterDeImagenes.jugador[0].getHeight();
 
     public Jugador(int x, int y, ID id, Controlador controlador) {
+
         super(x, y, id);
         this.controlador = controlador;
     }
 
-    //detecta colision con enemigos
+    // Detecta colisión con enemigos
     private void colisionEnemigo() {
+
         for(int i = 0; i < controlador.object.size(); i++) {
 
             ActorDeJuego tempObject = controlador.object.get(i);
 
             if(tempObject.getID() == ID.EnemigoBasico) {
+
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    AudioPlayer.playSound("res/herir.wav");
+
+                    AudioPlayer.playSound("res/Sonido/Jugador/Dolor.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=2;
                     else
                         Hud.vida -=2;
                 }
             }
-            else if(tempObject.getID() == ID.EnemigoRapido){
+            else if(tempObject.getID() == ID.EnemigoRapido) {
+
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    AudioPlayer.playSound("res/herir.wav");
+
+                    AudioPlayer.playSound("res/Sonido/Jugador/Dolor.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=1;
                     else
@@ -47,9 +53,9 @@ public class Jugador extends ActorDeJuego {
                 }
             }
 
-            else if(tempObject.getID() == ID.Jefe){
+            else if(tempObject.getID() == ID.Jefe) {
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    AudioPlayer.playSound("res/herir.wav");
+                    AudioPlayer.playSound("res/Sonido/Jugador/Dolor.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=3;
                     else
@@ -59,17 +65,20 @@ public class Jugador extends ActorDeJuego {
         }
     }
 
-    //detecta colision con basura
+    // Detecta colisión con basura
     private void colisionBasura() {
+
         for(int i = 0; i < controlador.object.size(); i++) {
 
             ActorDeJuego tempObject = controlador.object.get(i);
 
-            //if detecta con uso de booleanos que no este cargando otros tipos de basura
+            // Condición para detectar  con uso de booleanos que no esté cargando otros tipos de basura
             if(tempObject.getID() == ID.Carton && !Hud.cargaBasura[0] && !Hud.cargaBasura[1]
             && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
+
+                    AudioPlayer.playSound("res/Sonido/Basura/Carton.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[0] = true;
@@ -80,7 +89,8 @@ public class Jugador extends ActorDeJuego {
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    AudioPlayer.playSound("res/sonido/plastico.wav");
+
+                    AudioPlayer.playSound("res/Sonido/Basura/Plastico.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[1] = true;
@@ -91,6 +101,8 @@ public class Jugador extends ActorDeJuego {
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
+
+                    AudioPlayer.playSound("res/Sonido/Basura/Organico.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[2] = true;
@@ -101,7 +113,8 @@ public class Jugador extends ActorDeJuego {
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    AudioPlayer.playSound("res/sonido/metal.wav");
+
+                    AudioPlayer.playSound("res/Sonido/Basura/Metal.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[3] = true;
@@ -110,27 +123,35 @@ public class Jugador extends ActorDeJuego {
         }
     }
 
-    private void recompensaRecicladora(ID id){
-        if(id == ID.RecicladoraCarton && Hud.cargaBasura[0]){
+    private void recompensaRecicladora(ID id) {
+
+        if(id == ID.RecicladoraCarton && Hud.cargaBasura[0]) {
+
+            AudioPlayer.playSound("res/Sonido/Basura/Carton.wav");
             Hud.cargaBasura[0] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
-            Hud.velocidadMAX += 0.5;
+            Hud.velocidadMAX += 0.2;
         }
-        else if(id == ID.RecicladoraPlastico && Hud.cargaBasura[1]){
+        else if(id == ID.RecicladoraPlastico && Hud.cargaBasura[1]) {
+
+            AudioPlayer.playSound("res/Sonido/Basura/Plastico.wav");
             Hud.cargaBasura[1] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
             Hud.escudo +=5;
         }
-        else if(id == ID.RecicladoraOrganica && Hud.cargaBasura[2]){
+        else if(id == ID.RecicladoraOrganica && Hud.cargaBasura[2]) {
+
+            AudioPlayer.playSound("res/Sonido/Basura/Organico.wav");
             Hud.cargaBasura[2] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
             Hud.vida += 10;
         }
-        else if(id == ID.RecicladoraAluminio && Hud.cargaBasura[3]){
-            AudioPlayer.playSound("res/sonido/metal2.wav");
+        else if(id == ID.RecicladoraAluminio && Hud.cargaBasura[3]) {
+
+            AudioPlayer.playSound("res/Sonido/Basura/entregaMetal.wav");
             Hud.cargaBasura[3] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
@@ -138,17 +159,17 @@ public class Jugador extends ActorDeJuego {
         }
     }
 
-    //detecta colision con recicladoras y valida que estemos cargando el material correcto
-    private void colisionRecicladora(){
+    // Detecta colisión con recicladoras y valida que estemos cargando el material correcto
+    private void colisionRecicladora() {
 
-        for(int i = 0; i < controlador.object.size(); i++){
+        for(int i = 0; i < controlador.object.size(); i++) {
 
             ActorDeJuego tempObject = controlador.object.get(i);
 
             if(tempObject.getID() == ID.RecicladoraOrganica || tempObject.getID() == ID.RecicladoraPlastico
-            || tempObject.getID() == ID.RecicladoraCarton || tempObject.getID() == ID.RecicladoraAluminio){
+            || tempObject.getID() == ID.RecicladoraCarton || tempObject.getID() == ID.RecicladoraAluminio) {
 
-                if(getHorizontalBounds().intersects(tempObject.getBounds())){
+                if(getHorizontalBounds().intersects(tempObject.getBounds())) {
                     recompensaRecicladora(tempObject.getID());
                     if(velX > 0){
                         velX = 0;
@@ -156,11 +177,11 @@ public class Jugador extends ActorDeJuego {
                     }
                     else if(velX < 0) {
                         velX = 0;
-                        x = tempObject.getX() + 96;
+                        x = tempObject.getX() + 200;
                     }
                 }
 
-                if(getVerticalBounds().intersects(tempObject.getBounds())){
+                if(getVerticalBounds().intersects(tempObject.getBounds())) {
                     recompensaRecicladora(tempObject.getID());
                     if(velY > 0){
                         velY = 0;
@@ -168,15 +189,17 @@ public class Jugador extends ActorDeJuego {
                     }
                     else if(velY < 0) {
                         velY = 0;
-                        y = tempObject.getY() + 65;
+                        y = tempObject.getY() + 128;
                     }
                 }
             }
         }
     }
 
-    private void colisionPortal(){
-        for(int i = 0; i < controlador.object.size(); i++){
+    private void colisionPortal() {
+
+        for(int i = 0; i < controlador.object.size(); i++) {
+
             ActorDeJuego tempObject = controlador.object.get(i);
             if(tempObject.getID() == ID.Portal){
                 if(getBounds().intersects(tempObject.getBounds())){
@@ -186,22 +209,22 @@ public class Jugador extends ActorDeJuego {
             }
         }
     }
-    //logica del jugador
+    // Lógica del jugador
     @Override
     public void tick() {
         //movimiento
         x+=velX;
         y+=velY;
 
-        //clamp para limitar velocidad
+        // Clamp para limitar velocidad
         velX = Juego.clamp(velX,-Hud.velocidadMAX,Hud.velocidadMAX);
         velY = Juego.clamp(velY,-Hud.velocidadMAX,Hud.velocidadMAX);
 
-        //clamps para que no salga del nivel
+        // Clamps para que no salga del nivel
         x = Juego.clamp(x,500, SetterDeImagenes.nivel1.getWidth()-500);
         y = Juego.clamp(y,500, SetterDeImagenes.nivel1.getHeight()-500);
 
-        //movimiento horizontal
+        // Movimiento horizontal
         if(TecladoJugador.teclas[0])
             velX+=1;
         else if(TecladoJugador.teclas[1])
@@ -209,7 +232,7 @@ public class Jugador extends ActorDeJuego {
         else if(!TecladoJugador.teclas[0] && !TecladoJugador.teclas[1]){
             velX = 0;
         }
-        //movimiento vertical
+        // Movimiento vertical
         if(TecladoJugador.teclas[3])
             velY+=1;
         else if(TecladoJugador.teclas[2])
@@ -218,14 +241,14 @@ public class Jugador extends ActorDeJuego {
             velY = 0;
         }
 
-        //detecta todas las colisiones
+        // Detecta todas las colisiones
         colisionEnemigo();
         colisionBasura();
         colisionRecicladora();
         colisionPortal();
     }
 
-    //pinta jugador
+    // Pinta jugador
     @Override
     public void render(Graphics g) {
 
@@ -239,14 +262,15 @@ public class Jugador extends ActorDeJuego {
             g.drawImage(SetterDeImagenes.jugador[3],(int)x,(int)y,null);
     }
 
-    //retorna tamano del jugador
+    // Retorna tamano del jugador
     @Override
     public Rectangle getBounds() {
+
         return new Rectangle((int)x,(int)y,ancho,altura);
     }
 
-    //rectangulo para detectar colisiones con obstaculos yendo horizontal
-    private Rectangle getHorizontalBounds(){
+    // Rectángulo para detectar colisiones con obstáculos eje vertical
+    private Rectangle getHorizontalBounds() {
 
         float bx = x + velX;
         float by = y;
@@ -256,8 +280,8 @@ public class Jugador extends ActorDeJuego {
         return new Rectangle((int)bx,(int)by,(int)bw,(int)bh);
     }
 
-    //rectangulo para detectar colisiones con obstaculos yendo vertical
-    private Rectangle getVerticalBounds(){
+    // Rectángulo para detectar colisiones con obstáculos eje horizontal
+    private Rectangle getVerticalBounds() {
 
         float bx = x;
         float by = y + velY;

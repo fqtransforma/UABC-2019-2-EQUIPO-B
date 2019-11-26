@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.TiposBasura;
 
-import Externo.Archivos.SetterDeImagenes;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import EntidadesDeJuego.Entidad.ID;
 

@@ -1,7 +1,7 @@
 package ComponentesDeJuego;
 
-import Externo.Archivos.SetterDeImagenes;
-import Externo.Archivos.Leaderboards;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Jugador.Leaderboards;
 
 import java.awt.*;
 

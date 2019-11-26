@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.Enemigos;
 
-import Externo.Archivos.SetterDeImagenes;
+import Externo.Archivos.Imagenes.SetterDeImagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
 import EntidadesDeJuego.Entidad.ID;
@@ -23,6 +23,40 @@ public class EnemigoRapido extends ActorDeJuego {
         for(int i = 0; i < controlador.object.size(); i++){
             if(controlador.object.get(i).getID() == ID.Jugador)
                 jugador = controlador.object.get(i);
+        }
+    }
+
+    private void colisionRecicladora() {
+
+        for(int i = 0; i < controlador.object.size(); i++) {
+
+            ActorDeJuego tempObject = controlador.object.get(i);
+
+            if(tempObject.getID() == ID.RecicladoraOrganica || tempObject.getID() == ID.RecicladoraPlastico
+                    || tempObject.getID() == ID.RecicladoraCarton || tempObject.getID() == ID.RecicladoraAluminio) {
+
+                if(getHorizontalBounds().intersects(tempObject.getBounds())) {
+                    if(velX > 0){
+                        velX = 0;
+                        x = tempObject.getX() - 48;
+                    }
+                    else if(velX < 0) {
+                        velX = 0;
+                        x = tempObject.getX() + 200;
+                    }
+                }
+
+                if(getVerticalBounds().intersects(tempObject.getBounds())) {
+                    if(velY > 0){
+                        velY = 0;
+                        y = tempObject.getY() - 64;
+                    }
+                    else if(velY < 0) {
+                        velY = 0;
+                        y = tempObject.getY() + 128;
+                    }
+                }
+            }
         }
     }
 
@@ -50,6 +84,8 @@ public class EnemigoRapido extends ActorDeJuego {
                 x += velX;
                 y += velY;
             }
+
+            colisionRecicladora();
         }
         else
             //busca jugador en caso de no encontrarlo
@@ -69,5 +105,26 @@ public class EnemigoRapido extends ActorDeJuego {
     @Override
     public Rectangle getBounds() {
         return new Rectangle((int)x,(int)y, 36,52);
+    }
+
+    private Rectangle getHorizontalBounds() {
+
+        float bx = x + velX;
+        float by = y;
+        float bw = 48 + velX/3;
+        float bh = 64;
+
+        return new Rectangle((int)bx,(int)by,(int)bw,(int)bh);
+    }
+
+    // Rectángulo para detectar colisiones con obstáculos eje horizontal
+    private Rectangle getVerticalBounds() {
+
+        float bx = x;
+        float by = y + velY;
+        float bw = 48;
+        float bh = 64 + velY/3;
+
+        return new Rectangle((int)bx,(int)by,(int)bw,(int)bh);
     }
 }

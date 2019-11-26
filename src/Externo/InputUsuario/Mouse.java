@@ -1,6 +1,6 @@
 package Externo.InputUsuario;
 
-import Externo.Archivos.Leaderboards;
+import Externo.Archivos.Jugador.Leaderboards;
 import ComponentesDeJuego.Juego;
 
 import java.awt.event.MouseAdapter;
