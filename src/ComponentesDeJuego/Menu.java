@@ -1,6 +1,6 @@
 package ComponentesDeJuego;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Imagenes.Imagenes;
 import Externo.Archivos.Jugador.Leaderboards;
 
 import java.awt.*;
@@ -21,12 +21,12 @@ public class Menu{
 
         //pinta el fondo
         if(Juego.estado == Juego.ESTADO.Menu) {
-            g.drawImage(SetterDeImagenes.menuBG, 0, 0, null);
+            g.drawImage(Imagenes.menuBG, 0, 0, null);
         }
 
         //pinta el arreglo de jugadores
         else if(Juego.estado == Juego.ESTADO.LeaderBoards){
-            g.drawImage(SetterDeImagenes.leaderboardsBG,0,0,null);
+            g.drawImage(Imagenes.leaderboardsBG,0,0,null);
             g.setColor(Color.white);
             g.drawString("Leaderboards", Juego.ANCHO / 2 - 90, Juego.ALTURA / 4);
             if(lb.lista.size() >= 9) {

@@ -1,6 +1,7 @@
 package EntidadesDeJuego.Actores.Enemigos;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import EntidadesDeJuego.Entidad.Animacion;
+import Externo.Archivos.Imagenes.Imagenes;
 import ComponentesDeJuego.Controlador;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import EntidadesDeJuego.Entidad.ID;
@@ -11,11 +12,16 @@ public class Jefe extends ActorDeJuego {
 
     private Controlador controlador;
     private ActorDeJuego jugador;
+    private float distancia;
+    private Animacion caminaDerecha;
+    private Animacion caminaIzquierda;
 
     public Jefe(float x, float y, ID id, Controlador controlador) {
         super(x, y, id);
         this.controlador = controlador;
         encuentraJugador();
+        caminaDerecha = new Animacion(10,Imagenes.jefe[3],Imagenes.jefe[4],Imagenes.jefe[5]);
+        caminaIzquierda = new Animacion(10,Imagenes.jefe[9],Imagenes.jefe[10],Imagenes.jefe[11]);
     }
 
     private void encuentraJugador(){
@@ -27,7 +33,7 @@ public class Jefe extends ActorDeJuego {
 
     @Override
     public void tick() {
-        float diffX, diffY, distancia;
+        float diffX, diffY;
         //algoritmo para saber hacia donde esta el jugador
         if(jugador !=null) {
             diffX = x - jugador.getX();
@@ -35,35 +41,40 @@ public class Jefe extends ActorDeJuego {
             distancia = (float) Math.sqrt((x - jugador.getX()) * (x - jugador.getX()) + (y - jugador.getY()) * (y - jugador.getY()));
 
             //if para saber si el jugador esta cerca o no
-            if(distancia <1000){
+            if(distancia < 750){
                 velX = (float) ((-1.0/ distancia)*diffX);
                 velY = (float) ((-1.0/ distancia)*diffY);
                 if(velX<0)
-                    velX-=.8;
+                    velX-=1.2;
                 else
-                    velX+=.8;
+                    velX+=1.2;
                 if(velY<0)
-                    velY-=.8;
+                    velY-=1.2;
                 else
-                    velY+=.8;
+                    velY+=1.2;
                 x += velX;
                 y += velY;
             }
         }
         else
             encuentraJugador();
+        caminaDerecha.runAnimation();
+        caminaIzquierda.runAnimation();
     }
 
     @Override
     public void render(Graphics g) {
-            if(velX>0)
-                g.drawImage(SetterDeImagenes.jefe[1],(int)x,(int)y,null);
-            else
-                g.drawImage(SetterDeImagenes.jefe[0],(int)x,(int)y,null);
+        if(distancia > 750){
+            g.drawImage(Imagenes.jefe[7],(int)x,(int)y,null);
+        }
+        else if(velX > 0)
+            caminaDerecha.drawAnimation(g,(int)x,(int)y);
+        else
+            caminaIzquierda.drawAnimation(g,(int)x,(int)y);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y, 76,108);
+        return new Rectangle((int)x,(int)y, 120,140);
     }
 }

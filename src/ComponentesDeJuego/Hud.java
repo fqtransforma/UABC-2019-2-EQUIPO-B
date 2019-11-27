@@ -45,9 +45,8 @@ public class Hud {
         //rectangulo superior
         g.setColor(Color.black);
         g.fillRect(0,0, Juego.ANCHO, Juego.ALTURA /8);
-        g.setColor(Color.green);
+        g.setColor(Color.white);
         g.drawRect(0,0, Juego.ANCHO, Juego.ALTURA /8);
-        g.setColor(Color.green);
         //letras del hud
         g.setFont(new Font("arial",0,20));
         g.drawString("Nivel: "+ nivel, Juego.ANCHO /26, Juego.ALTURA /25);

@@ -1,6 +1,7 @@
 package EntidadesDeJuego.Actores.Enemigos;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import EntidadesDeJuego.Entidad.Animacion;
+import Externo.Archivos.Imagenes.Imagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
 import EntidadesDeJuego.Entidad.ID;
@@ -11,12 +12,21 @@ public class EnemigoBasico extends ActorDeJuego {
 
     private Controlador controlador;
     private ActorDeJuego jugador;
+    private float distancia;
+    private Animacion caminaArriba;
+    private Animacion caminaAbajo;
+    private Animacion caminaDerecha;
+    private Animacion caminaIzquierda;
 
     //constructor del enemigo basico
     public EnemigoBasico(int x, int y, ID id, Controlador controlador) {
         super(x, y, id);
         this.controlador = controlador;
         encuentraJugador();
+        caminaArriba = new Animacion(10,Imagenes.enemigoBasico[0],Imagenes.enemigoBasico[1],Imagenes.enemigoBasico[2]);
+        caminaDerecha = new Animacion(10,Imagenes.enemigoBasico[3],Imagenes.enemigoBasico[4],Imagenes.enemigoBasico[5]);
+        caminaAbajo = new Animacion(10,Imagenes.enemigoBasico[6],Imagenes.enemigoBasico[7],Imagenes.enemigoBasico[8]);
+        caminaIzquierda = new Animacion(10,Imagenes.enemigoBasico[9],Imagenes.enemigoBasico[10],Imagenes.enemigoBasico[11]);
     }
 
     //busca el jugador para poder seguirlo
@@ -30,7 +40,7 @@ public class EnemigoBasico extends ActorDeJuego {
     //logica de nuestro enemigo basico
     @Override
     public void tick() {
-        float diffX, diffY, distancia;
+        float diffX, diffY;
         //algoritmo para saber hacia donde esta el jugador
         if(jugador != null) {
             diffX = x - jugador.getX();
@@ -57,15 +67,22 @@ public class EnemigoBasico extends ActorDeJuego {
         else
             //en caso de no haber encontrado jugador lo vuelve a buscar
             encuentraJugador();
+        caminaDerecha.runAnimation();
+        caminaIzquierda.runAnimation();
+        caminaAbajo.runAnimation();
+        caminaArriba.runAnimation();
     }
 
     @Override
     //pinta imagen del enemigo
     public void render(Graphics g) {
-        if(velX>0)
-                g.drawImage(SetterDeImagenes.enemigoBasico[1], (int) x, (int) y, null);
+        if(distancia > 300){
+            g.drawImage(Imagenes.enemigoBasico[7],(int)x,(int)y,null);
+        }
+        else if(velX > 0)
+            caminaDerecha.drawAnimation(g,(int)x,(int)y);
         else
-            g.drawImage(SetterDeImagenes.enemigoBasico[0],(int)x,(int)y,null);
+            caminaIzquierda.drawAnimation(g,(int)x,(int)y);
     }
 
     //retorna un rectangulo del tamano de la imagen para la colision con el jugador

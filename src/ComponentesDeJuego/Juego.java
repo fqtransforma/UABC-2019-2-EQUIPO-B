@@ -1,9 +1,8 @@
 package ComponentesDeJuego;
 
-import Externo.Archivos.Sonido.AudioPlayer;
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Imagenes.Imagenes;
 import Externo.Archivos.Jugador.Leaderboards;
-import Externo.Archivos.Sonido.Sonido;
+import Externo.Archivos.Sonido.Audio;
 import Externo.InputUsuario.TecladoJugador;
 import Externo.InputUsuario.Teclado;
 import Externo.InputUsuario.Mouse;
@@ -32,14 +31,15 @@ public class Juego extends Canvas implements Runnable {
     private TecladoJugador mj;
     private Teclado teclado;
     private Mouse mouse;
-    private Sonido sonidoMenu = new Sonido("res/sonido/Menu.wav");
+    private Audio audio;
 
     // Estados que controlan el juego
     public enum ESTADO {
         Menu(),
         Juego(),
         LeaderBoards(),
-        GameOver()
+        GameOver(),
+        Win()
     }
 
     // Estado inicial
@@ -54,7 +54,7 @@ public class Juego extends Canvas implements Runnable {
 
     // Inicizizador de las partes del juego
     private void init(){
-        SetterDeImagenes.cargaImagenes();
+        Imagenes.cargaImagenes();
         controlador = new Controlador();
         lb = new Leaderboards();
         menu = new Menu(lb);
@@ -62,12 +62,14 @@ public class Juego extends Canvas implements Runnable {
         nivel = new Nivel(controlador);
         camara = new Camara(0,0, controlador);
         mj = new TecladoJugador();
-        teclado = new Teclado(controlador, nivel);
-        mouse = new Mouse(lb);
+        audio = new Audio();
+        teclado = new Teclado(controlador, nivel, audio);
+        mouse = new Mouse(lb,audio);
         this.addKeyListener(mj);
         this.addMouseListener(mouse);
         this.addKeyListener(teclado);
         lb.leer();
+        audio.playSonidoBG("res/sonido/Menu.wav");
     }
 
     // Inicializa hilo
@@ -111,7 +113,7 @@ public class Juego extends Canvas implements Runnable {
 
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                System.out.println("FPS: " + frames);
+                //System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
@@ -121,13 +123,15 @@ public class Juego extends Canvas implements Runnable {
     // Método que maneja la logica del juego
     private void tick(){
 
-        if(estado == ESTADO.Menu){
-            sonidoMenu.play();
-        }
-        else if(estado == ESTADO.Juego) {
+        if(estado == ESTADO.Juego) {
             // Cambia a game over si se muere el jugador
             if(Hud.vida == 0){
+                nivel.audio.clip.close();
                 estado = ESTADO.GameOver;
+            }
+            else if(Hud.nivel == 7){
+                nivel.audio.clip.close();
+                estado = ESTADO.Win;
             }
             // Corre las variables de los componentes del juego
             nivel.tick();
@@ -135,7 +139,7 @@ public class Juego extends Canvas implements Runnable {
             hud.tick();
             camara.tick();
         }
-        else if(estado == ESTADO.GameOver){
+        else if(estado == ESTADO.GameOver  || estado == ESTADO.Win){
             // Agrega jugador al arreglo, lo escribe y reinicia el juego
             if(capturaJugador) {
                 lb.addRankedPlayer();
@@ -174,9 +178,13 @@ public class Juego extends Canvas implements Runnable {
             // Pinta hud
             hud.render(g);
         }
-        else if(estado == ESTADO.GameOver ) {
+        else if(estado == ESTADO.GameOver) {
             // Estado para cuando el jugador está muerto
-            g.drawImage(SetterDeImagenes.gameoverBG,0,0,null);
+            g.drawImage(Imagenes.gameoverBG,0,0,null);
+        }
+        else if(estado == ESTADO.Win) {
+            // Estado para cuando el jugador está muerto
+            g.drawImage(Imagenes.gameoverBG,0,0,null);
         }
 
         g.dispose();

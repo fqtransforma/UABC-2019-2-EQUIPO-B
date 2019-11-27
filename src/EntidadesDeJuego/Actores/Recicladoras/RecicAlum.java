@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.Recicladoras;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Imagenes.Imagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 
 import java.awt.*;
@@ -19,7 +19,7 @@ public class RecicAlum extends ActorDeJuego {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(SetterDeImagenes.recicAlum,(int)x,(int)y,null);
+        g.drawImage(Imagenes.recicAlum,(int)x,(int)y,null);
         g.setColor(Color.gray);
         g.fillRect((int)x,(int)y,200,128);
     }

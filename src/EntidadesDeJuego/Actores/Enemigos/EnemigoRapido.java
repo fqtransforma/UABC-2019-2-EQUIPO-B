@@ -1,6 +1,7 @@
 package EntidadesDeJuego.Actores.Enemigos;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import EntidadesDeJuego.Entidad.Animacion;
+import Externo.Archivos.Imagenes.Imagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import ComponentesDeJuego.Controlador;
 import EntidadesDeJuego.Entidad.ID;
@@ -11,11 +12,20 @@ public class EnemigoRapido extends ActorDeJuego {
 
     private Controlador controlador;
     private ActorDeJuego jugador;
+    private float distancia;
+    private Animacion caminaArriba;
+    private Animacion caminaAbajo;
+    private Animacion caminaDerecha;
+    private Animacion caminaIzquierda;
 
     public EnemigoRapido(int x, int y, ID id, Controlador controlador) {
         super(x, y, id);
         this.controlador = controlador;
         encuentraJugador();
+        caminaArriba = new Animacion(10,Imagenes.enemigoRapido[0],Imagenes.enemigoRapido[1],Imagenes.enemigoRapido[2]);
+        caminaDerecha = new Animacion(10,Imagenes.enemigoRapido[3],Imagenes.enemigoRapido[4],Imagenes.enemigoRapido[5]);
+        caminaAbajo = new Animacion(10,Imagenes.enemigoRapido[6],Imagenes.enemigoRapido[7],Imagenes.enemigoRapido[8]);
+        caminaIzquierda = new Animacion(10,Imagenes.enemigoRapido[9],Imagenes.enemigoRapido[10],Imagenes.enemigoRapido[11]);
     }
 
     //buscac jugador para poder seguirlo
@@ -62,24 +72,24 @@ public class EnemigoRapido extends ActorDeJuego {
 
     @Override
     public void tick() {
-        float diffX, diffY, distancia;
+        float diffX, diffY;
         if(jugador !=null) {
             diffX = x - jugador.getX();
             diffY = y - jugador.getY();
             distancia = (float) Math.sqrt((x - jugador.getX()) * (x - jugador.getX()) + (y - jugador.getY()) * (y - jugador.getY()));
 
-            if(distancia <500){
+            if(distancia < 500){
                 velX = (float) ((-1.0/ distancia)*diffX);
                 velY = (float) ((-1.0/ distancia)*diffY);
                 //si se mueve en - x, agregar velocidad negativa
                 if(velX<0)
-                    velX-=1.2;
+                    velX-=1.5;
                 else //si se mueve en x, agregar velocidad positiva
-                    velX+=1.2;
+                    velX+=1.5;
                 if(velY<0) // si se mueve en -y, agregar velocidad negativa
-                    velY-=1.2;
+                    velY-=1.5;
                 else //si se mueve en y, agregar velocidad positiva
-                    velY+=1.2;
+                    velY+=1.5;
                 //agregamos velocidades a posicion del enemigo
                 x += velX;
                 y += velY;
@@ -90,15 +100,22 @@ public class EnemigoRapido extends ActorDeJuego {
         else
             //busca jugador en caso de no encontrarlo
             encuentraJugador();
+        caminaDerecha.runAnimation();
+        caminaIzquierda.runAnimation();
+        caminaAbajo.runAnimation();
+        caminaArriba.runAnimation();
     }
 
     //pinta imagen de enemigo
     @Override
     public void render(Graphics g) {
-        if(velX>0)
-            g.drawImage(SetterDeImagenes.enemigoRapido[1], (int) x, (int) y, null);
+        if(distancia > 500){
+            g.drawImage(Imagenes.enemigoRapido[7],(int)x,(int)y,null);
+        }
+        else if(velX > 0)
+            caminaDerecha.drawAnimation(g,(int)x,(int)y);
         else
-            g.drawImage(SetterDeImagenes.enemigoRapido[0],(int)x,(int)y,null);
+            caminaIzquierda.drawAnimation(g,(int)x,(int)y);
     }
 
     //retorna rectangulo del tamano de la imagen del enemigo

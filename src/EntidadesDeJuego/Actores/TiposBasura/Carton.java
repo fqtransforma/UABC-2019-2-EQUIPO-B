@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.TiposBasura;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Imagenes.Imagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import EntidadesDeJuego.Entidad.ID;
 
@@ -20,7 +20,7 @@ public class Carton extends ActorDeJuego {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(SetterDeImagenes.carton,(int)x,(int)y,null);
+        g.drawImage(Imagenes.carton,(int)x,(int)y,null);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package EntidadesDeJuego.Actores.TiposBasura;
 
-import Externo.Archivos.Imagenes.SetterDeImagenes;
+import Externo.Archivos.Imagenes.Imagenes;
 import EntidadesDeJuego.Entidad.ActorDeJuego;
 import EntidadesDeJuego.Entidad.ID;
 
@@ -19,7 +19,7 @@ public class Plastico extends ActorDeJuego {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(SetterDeImagenes.plastico,(int)x,(int)y,null);
+        g.drawImage(Imagenes.plastico,(int)x,(int)y,null);
 
     }
 

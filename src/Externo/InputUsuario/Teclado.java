@@ -4,6 +4,7 @@ import ComponentesDeJuego.Juego;
 import ComponentesDeJuego.Controlador;
 import ComponentesDeJuego.Hud;
 import ComponentesDeJuego.Nivel;
+import Externo.Archivos.Sonido.Audio;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -12,10 +13,12 @@ public class Teclado extends KeyAdapter {
 
     private Controlador handler;
     private Nivel level;
+    private Audio audio;
 
-    public Teclado(Controlador handler, Nivel level) {
+    public Teclado(Controlador handler, Nivel level, Audio audio) {
         this.handler = handler;
         this.level = level;
+        this.audio = audio;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -38,14 +41,22 @@ public class Teclado extends KeyAdapter {
                 Hud.resetJuego();
                 handler.object.clear();
                 level.resetNivel();
+                level.audio.clip.close();
+                audio.clip.setMicrosecondPosition(0);
+                audio.clip.start();
             }
 
             else if(key == KeyEvent.VK_1)
                 Hud.nivel++;
+
+            else if(key == KeyEvent.VK_2)
+                Hud.basuraEntregada+=1;
         }
 
-        else if(Juego.estado == Juego.ESTADO.GameOver){
+        else if(Juego.estado == Juego.ESTADO.GameOver || Juego.estado == Juego.ESTADO.Win){
             if(key == KeyEvent.VK_ENTER)
+                audio.clip.setMicrosecondPosition(0);
+                audio.clip.start();
                 Juego.estado = Juego.ESTADO.Menu;
         }
     }
