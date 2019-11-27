@@ -1,5 +1,6 @@
 package ComponentesDeJuego;
 
+import EntidadesDeJuego.Actores.Enemigos.EnemigoAgresivo;
 import EntidadesDeJuego.Actores.Enemigos.EnemigoRapido;
 import EntidadesDeJuego.Actores.Enemigos.Jefe;
 import EntidadesDeJuego.Actores.Portal.Portal;
@@ -79,7 +80,7 @@ public class Nivel {
         abrePortales();
         // Nivel 1
         if(Hud.nivel == 1 && nivel[0]) {
-            audio.playSonidoBG("res/sonido/Niveles/n1.wav");
+            audio.playSonidoBG("res/sonido/Niveles/bensound-theduel.wav");
             nivel[0] = false;
             // Recicladoras
             controlador.agregaObject(new RecicAlum(1000,2000, ID.RecicladoraAluminio));
@@ -99,8 +100,6 @@ public class Nivel {
         }
         // Nivel 2
         else if(Hud.nivel == 2 && nivel[1]) {
-            audio.clip.stop();
-            audio.playSonidoBG("res/sonido/Niveles/n2.wav");
             nivel[1] = false;
             // Limpia nivel pasado
             controlador.object.clear();
@@ -111,9 +110,9 @@ public class Nivel {
             controlador.agregaObject(new RecicCarton(2000,2000, ID.RecicladoraCarton));
             // Basura
             for(int i = 0; i < 2; i ++){
-                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Plastico));
-                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Aluminio));
-                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.BasuraOrganica));
+                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Plastico));
+                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Aluminio));
+                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.BasuraOrganica));
                 controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Carton));
             }
             // Enemigos
@@ -127,7 +126,8 @@ public class Nivel {
         }
         // Nivel 3
         else if(Hud.nivel == 3 && nivel[2]) {
-            audio.clip.stop();
+            audio.clip.close();
+            audio.playSonidoBG("res/sonido/Niveles/bensound-epic.wav");
             nivel[2] = false;
             // Limpia nivel pasado
             controlador.object.clear();
@@ -138,10 +138,10 @@ public class Nivel {
             controlador.agregaObject(new RecicCarton(2000,2000, ID.RecicladoraCarton));
             // Basura
             for(int i = 0; i < 2; i ++){
-                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Plastico));
-                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Aluminio));
-                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.BasuraOrganica));
-                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Carton));
+                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Plastico));
+                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Aluminio));
+                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.BasuraOrganica));
+                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Carton));
             }
             // Enemigos
             controlador.agregaObject(new EnemigoBasico(1000,1000, ID.EnemigoBasico, controlador));
@@ -158,7 +158,6 @@ public class Nivel {
 
         // Nivel 4
         else if(Hud.nivel == 4 && nivel[3]) {
-            audio.clip.stop();
             nivel[3] = false;
             // Limpia nivel pasado
             controlador.object.clear();
@@ -169,10 +168,10 @@ public class Nivel {
             controlador.agregaObject(new RecicCarton(2000, 2000, ID.RecicladoraCarton));
             // Basura
             for(int i = 0; i < 3; i ++){
-                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Plastico));
-                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Aluminio));
-                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.BasuraOrganica));
-                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Carton));
+                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Plastico));
+                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Aluminio));
+                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.BasuraOrganica));
+                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Carton));
             }
             // Enemigos
             // Jugador
@@ -182,6 +181,7 @@ public class Nivel {
         // Nivel 5
         else if(Hud.nivel == 5 && nivel[4]) {
             audio.clip.stop();
+            audio.playSonidoBG("res/sonido/Niveles/bensound-evolution.wav");
             nivel[4] = false;
             // Limpia nivel pasado
             controlador.object.clear();
@@ -192,10 +192,10 @@ public class Nivel {
             controlador.agregaObject(new RecicCarton(2000, 2000, ID.RecicladoraCarton));
             // Basura
             for(int i = 0; i < 3; i++) {
-                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Plastico));
-                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Aluminio));
-                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.BasuraOrganica));
-                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Carton));
+                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Plastico));
+                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Aluminio));
+                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.BasuraOrganica));
+                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Carton));
             }
             // Enemigos
             // Jugador
@@ -215,10 +215,10 @@ public class Nivel {
             controlador.agregaObject(new RecicCarton(2000, 2000, ID.RecicladoraCarton));
             // Basura
             for(int i = 0; i < 4; i++) {
-                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Plastico));
-                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Aluminio));
-                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.BasuraOrganica));
-                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(690), ID.Carton));
+                controlador.agregaObject(new Plastico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Plastico));
+                controlador.agregaObject(new Aluminio(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Aluminio));
+                controlador.agregaObject(new Organico(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.BasuraOrganica));
+                controlador.agregaObject(new Carton(510 + r.nextInt(1480), 510 + r.nextInt(1100), ID.Carton));
             }
             // Enemigos
             // Jugador

@@ -42,8 +42,7 @@ public class Teclado extends KeyAdapter {
                 handler.object.clear();
                 level.resetNivel();
                 level.audio.clip.close();
-                audio.clip.setMicrosecondPosition(0);
-                audio.clip.start();
+                audio.clip.close();
             }
 
             else if(key == KeyEvent.VK_1)
@@ -55,9 +54,9 @@ public class Teclado extends KeyAdapter {
 
         else if(Juego.estado == Juego.ESTADO.GameOver || Juego.estado == Juego.ESTADO.Win){
             if(key == KeyEvent.VK_ENTER)
-                audio.clip.setMicrosecondPosition(0);
-                audio.clip.start();
                 Juego.estado = Juego.ESTADO.Menu;
+                audio.clip.close();
+                audio.playSonidoBG("res/sonido/Background/bensound-scifi.wav");
         }
     }
 }

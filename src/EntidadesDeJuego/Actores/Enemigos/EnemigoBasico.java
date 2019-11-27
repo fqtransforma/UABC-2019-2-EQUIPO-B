@@ -13,8 +13,6 @@ public class EnemigoBasico extends ActorDeJuego {
     private Controlador controlador;
     private ActorDeJuego jugador;
     private float distancia;
-    private Animacion caminaArriba;
-    private Animacion caminaAbajo;
     private Animacion caminaDerecha;
     private Animacion caminaIzquierda;
 
@@ -23,9 +21,7 @@ public class EnemigoBasico extends ActorDeJuego {
         super(x, y, id);
         this.controlador = controlador;
         encuentraJugador();
-        caminaArriba = new Animacion(10,Imagenes.enemigoBasico[0],Imagenes.enemigoBasico[1],Imagenes.enemigoBasico[2]);
         caminaDerecha = new Animacion(10,Imagenes.enemigoBasico[3],Imagenes.enemigoBasico[4],Imagenes.enemigoBasico[5]);
-        caminaAbajo = new Animacion(10,Imagenes.enemigoBasico[6],Imagenes.enemigoBasico[7],Imagenes.enemigoBasico[8]);
         caminaIzquierda = new Animacion(10,Imagenes.enemigoBasico[9],Imagenes.enemigoBasico[10],Imagenes.enemigoBasico[11]);
     }
 
@@ -69,8 +65,6 @@ public class EnemigoBasico extends ActorDeJuego {
             encuentraJugador();
         caminaDerecha.runAnimation();
         caminaIzquierda.runAnimation();
-        caminaAbajo.runAnimation();
-        caminaArriba.runAnimation();
     }
 
     @Override
@@ -88,6 +82,6 @@ public class EnemigoBasico extends ActorDeJuego {
     //retorna un rectangulo del tamano de la imagen para la colision con el jugador
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y, 36,52);
+        return new Rectangle((int)x,(int)y, 48,64);
     }
 }

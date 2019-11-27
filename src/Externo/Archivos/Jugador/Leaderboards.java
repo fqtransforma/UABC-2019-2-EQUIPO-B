@@ -66,14 +66,10 @@ public class Leaderboards {
         for (int i = 1; i < lista.size(); i++) {
                 llave = lista.get(i);
                 j = i - 1;
-                System.out.println(llave);
-                System.out.println(lista.get(j));
                 while (j >= 0 && llave.getScore() > lista.get(j).getScore()) {
-                    System.out.println("Cambiando");
                     lista.set(j + 1, lista.get(j));
                     j--;
                 }
-                System.out.println("Insercion");
                 lista.set(j + 1, llave);
         }
     }

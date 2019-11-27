@@ -13,8 +13,6 @@ public class EnemigoRapido extends ActorDeJuego {
     private Controlador controlador;
     private ActorDeJuego jugador;
     private float distancia;
-    private Animacion caminaArriba;
-    private Animacion caminaAbajo;
     private Animacion caminaDerecha;
     private Animacion caminaIzquierda;
 
@@ -22,9 +20,7 @@ public class EnemigoRapido extends ActorDeJuego {
         super(x, y, id);
         this.controlador = controlador;
         encuentraJugador();
-        caminaArriba = new Animacion(10,Imagenes.enemigoRapido[0],Imagenes.enemigoRapido[1],Imagenes.enemigoRapido[2]);
         caminaDerecha = new Animacion(10,Imagenes.enemigoRapido[3],Imagenes.enemigoRapido[4],Imagenes.enemigoRapido[5]);
-        caminaAbajo = new Animacion(10,Imagenes.enemigoRapido[6],Imagenes.enemigoRapido[7],Imagenes.enemigoRapido[8]);
         caminaIzquierda = new Animacion(10,Imagenes.enemigoRapido[9],Imagenes.enemigoRapido[10],Imagenes.enemigoRapido[11]);
     }
 
@@ -102,8 +98,6 @@ public class EnemigoRapido extends ActorDeJuego {
             encuentraJugador();
         caminaDerecha.runAnimation();
         caminaIzquierda.runAnimation();
-        caminaAbajo.runAnimation();
-        caminaArriba.runAnimation();
     }
 
     //pinta imagen de enemigo
@@ -121,7 +115,7 @@ public class EnemigoRapido extends ActorDeJuego {
     //retorna rectangulo del tamano de la imagen del enemigo
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y, 36,52);
+        return new Rectangle((int)x,(int)y, 48,64);
     }
 
     private Rectangle getHorizontalBounds() {

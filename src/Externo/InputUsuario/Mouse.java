@@ -23,19 +23,19 @@ public class Mouse extends MouseAdapter {
 
         if(Juego.estado == Juego.ESTADO.Menu) {
             //boton de play
-            if (mouseOver(mx, my, Juego.ANCHO / 2 - 137, Juego.ALTURA / 3 - 55, 235, 82)) {
+            if (mouseOver(mx, my, Juego.ANCHO / 2 - (int)(Juego.ANCHO/7.47), Juego.ALTURA / 3 - (int)(Juego.ALTURA/10.9), (int) (Juego.ANCHO/4.35), (int)(Juego.ALTURA/7.32))) {
                 //cambia a juego y activa la captura de jugador
                 Juego.estado = Juego.ESTADO.Juego;
                 Juego.capturaJugador = true;
                 audio.clip.stop();
             //boton de leaderboards
-            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - 255, Juego.ALTURA / 2 - 50, 470, 82)) {
+            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - (int)(Juego.ANCHO/4.01), Juego.ALTURA / 2 - Juego.ALTURA / 12,  (int) (Juego.ANCHO/2.17), (int)(Juego.ALTURA/7.31))) {
                 //carga el arreglo
                 //lb.leer();
                 //lb.ordenamiento();
                 Juego.estado = Juego.ESTADO.LeaderBoards;
             //boton de exit
-            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - 137, (int) (Juego.ALTURA / 1.5) - 42, 235, 82)) {
+            } else if (mouseOver(mx, my, Juego.ANCHO / 2 - (int)(Juego.ANCHO/7.47), (int) (Juego.ALTURA / 1.5) - (int) (Juego.ALTURA / 14.28), (int) (Juego.ANCHO/4.35), (int)(Juego.ALTURA/7.32))) {
                 System.exit(1);
             }
         }

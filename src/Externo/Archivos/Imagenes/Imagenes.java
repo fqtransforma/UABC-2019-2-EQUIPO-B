@@ -14,6 +14,7 @@ public class Imagenes {
     public static BufferedImage menuBG = null;
     public static BufferedImage leaderboardsBG = null;
     public static BufferedImage gameoverBG = null;
+    public static BufferedImage winBG = null;
     public static BufferedImage nivel1 = null;
     public static BufferedImage nivel2 = null;
     public static BufferedImage nivel3 = null;
@@ -23,6 +24,7 @@ public class Imagenes {
     private static BufferedImage jugadorSheet = null;
     private static BufferedImage enemigoBSheet = null;
     private static BufferedImage enemigoRSheet = null;
+    private static BufferedImage enemigoASheet = null;
     private static BufferedImage jefeSheet = null;
     private static BufferedImage basuraSheet = null;
     private static BufferedImage recicladoraSheet = null;
@@ -30,6 +32,8 @@ public class Imagenes {
     public static BufferedImage[] jugador = new BufferedImage[17];
     public static BufferedImage[] enemigoBasico = new BufferedImage[12];
     public static BufferedImage[] enemigoRapido = new BufferedImage[12];
+    public static BufferedImage[] enemigoAgresivo = new BufferedImage[12];
+    public static BufferedImage[] jefe = new BufferedImage[12];
     public static BufferedImage organico = null;
     public static BufferedImage aluminio = null;
     public static BufferedImage plastico = null;
@@ -38,7 +42,6 @@ public class Imagenes {
     public static BufferedImage recicAlum = null;
     public static BufferedImage recicPlastic = null;
     public static BufferedImage recicCarton = null;
-    public static BufferedImage[] jefe = new BufferedImage[12];
 
     public static void cargaImagenes() {
         cargaFondo();
@@ -53,6 +56,7 @@ public class Imagenes {
             menuBG = BIL.loadImage("res/Background/menuBG.png");
             leaderboardsBG = BIL.loadImage("res/Background/leaderboardsbg.png");
             gameoverBG = BIL.loadImage("res/Background/gameoverBG.png");
+            winBG = BIL.loadImage("res/Background/ganasteBG.png");
             nivel1 = BIL.loadImage("res/Niveles/nivel1.png");
             nivel2 = BIL.loadImage("res/Niveles/nivel2.png");
             nivel3 = BIL.loadImage("res/Niveles/nivel3.png");
@@ -93,8 +97,9 @@ public class Imagenes {
     private static void cargaEnemigos(){
         try {
             // Carga imágenes completas
-            enemigoBSheet = BIL.loadImage("res/Enemigos/enemigoAZUL.png");
-            enemigoRSheet = BIL.loadImage("res/Enemigos/enemigoROJO.png");
+            enemigoBSheet = BIL.loadImage("res/Enemigos/enemigoBasico.png");
+            enemigoRSheet = BIL.loadImage("res/Enemigos/enemigoRapido.png");
+            enemigoASheet = BIL.loadImage("res/Enemigos/enemigoAgresivo.png");
             jefeSheet = BIL.loadImage("res/Enemigos/Jefe.png");
         }catch (IOException e) {
 
@@ -114,6 +119,13 @@ public class Imagenes {
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 3; j++)
                 enemigoRapido[contador++] = eSheet.grabImage(j + 1, i + 1,48,64);
+        }
+
+        eSheet = new SpriteSheet(enemigoASheet);
+        contador = 0;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++)
+                enemigoAgresivo[contador++] = eSheet.grabImage(j + 1, i + 1,48,64);
         }
 
         eSheet = new SpriteSheet(jefeSheet);

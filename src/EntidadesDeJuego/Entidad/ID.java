@@ -5,6 +5,7 @@ public enum ID {
     Jugador(),
     EnemigoBasico(),
     EnemigoRapido(),
+    EnemigoAgresivo(),
     Jefe(),
     BasuraOrganica(),
     Plastico(),

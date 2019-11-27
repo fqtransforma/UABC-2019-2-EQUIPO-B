@@ -1,5 +1,6 @@
 package ComponentesDeJuego;
 
+import EntidadesDeJuego.Entidad.Animacion;
 import Externo.Archivos.Imagenes.Imagenes;
 import Externo.Archivos.Jugador.Leaderboards;
 import Externo.Archivos.Sonido.Audio;
@@ -12,11 +13,11 @@ import java.awt.image.BufferStrategy;
 
 public class Juego extends Canvas implements Runnable {
 
-    //private static Toolkit tk = Toolkit.getDefaultToolkit();
-    //public static final int WIDTH = ((int)tk.getScreenSize().getWidth());
-    //public static final int HEIGHT = ((int)tk.getScreenSize().getHeight());
-    public static final int ANCHO = 1024;
-    public static final int ALTURA = 600;
+    private static Toolkit tk = Toolkit.getDefaultToolkit();
+    public static final int ANCHO = ((int)tk.getScreenSize().getWidth());
+    public static final int ALTURA = ((int)tk.getScreenSize().getHeight());
+    //public static final int ANCHO = 1024;
+    //public static final int ALTURA = 600;
     private Thread thread;
     private boolean corriendo = false;
     public static boolean capturaJugador;
@@ -69,7 +70,7 @@ public class Juego extends Canvas implements Runnable {
         this.addMouseListener(mouse);
         this.addKeyListener(teclado);
         lb.leer();
-        audio.playSonidoBG("res/sonido/Menu.wav");
+        audio.playSonidoBG("res/sonido/Background/bensound-scifi.wav");
     }
 
     // Inicializa hilo
@@ -127,10 +128,14 @@ public class Juego extends Canvas implements Runnable {
             // Cambia a game over si se muere el jugador
             if(Hud.vida == 0){
                 nivel.audio.clip.close();
+                audio.clip.close();
+                audio.playSonidoBG("res/sonido/Background/bensound-ofeliasdream.wav");
                 estado = ESTADO.GameOver;
             }
             else if(Hud.nivel == 7){
                 nivel.audio.clip.close();
+                audio.clip.close();
+                audio.playSonidoBG("res/sonido/Background/bensound-newdawn.wav");
                 estado = ESTADO.Win;
             }
             // Corre las variables de los componentes del juego
@@ -180,11 +185,11 @@ public class Juego extends Canvas implements Runnable {
         }
         else if(estado == ESTADO.GameOver) {
             // Estado para cuando el jugador está muerto
-            g.drawImage(Imagenes.gameoverBG,0,0,null);
+            g.drawImage(Imagenes.gameoverBG,0,0, ANCHO,ALTURA,null);
         }
         else if(estado == ESTADO.Win) {
-            // Estado para cuando el jugador está muerto
-            g.drawImage(Imagenes.gameoverBG,0,0,null);
+            // Estado para cuando el jugador gana
+            g.drawImage(Imagenes.winBG,0,0, ANCHO,ALTURA,null);
         }
 
         g.dispose();

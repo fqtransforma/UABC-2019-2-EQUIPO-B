@@ -20,28 +20,24 @@ public class Menu{
         g.setFont(new Font("Serif Plain", 1, 30));
 
         //pinta el fondo
-        if(Juego.estado == Juego.ESTADO.Menu) {
-            g.drawImage(Imagenes.menuBG, 0, 0, null);
-        }
+        if(Juego.estado == Juego.ESTADO.Menu)
+            g.drawImage(Imagenes.menuBG, 0, 0, Juego.ANCHO,Juego.ALTURA,null);
 
         //pinta el arreglo de jugadores
         else if(Juego.estado == Juego.ESTADO.LeaderBoards){
-            g.drawImage(Imagenes.leaderboardsBG,0,0,null);
+            g.drawImage(Imagenes.leaderboardsBG,0,0,Juego.ANCHO,Juego.ALTURA,null);
             g.setColor(Color.white);
-            g.drawString("Leaderboards", Juego.ANCHO / 2 - 90, Juego.ALTURA / 4);
-            if(lb.lista.size() >= 9) {
-                for (int i = 0; i < 9; i++) {
-                    g.drawString((i + 1) + ". " + lb.lista.get(i).getName() + " " + lb.lista.get(i).getScore(),
-                            Juego.ANCHO / 2 - 120, (Juego.ALTURA / 3) + (i * 40));
-                }
+            if(lb.lista.size()<10)
+            for (int i = 0; i < lb.lista.size(); i++) {
+                g.drawString((i + 1) + ". " + lb.lista.get(i).getName() + " " + lb.lista.get(i).getScore(),
+                        Juego.ANCHO / 2 - 120, (Juego.ALTURA / 4) + (i * 40));
             }
             else{
-                for (int i = 0; i < lb.lista.size(); i++) {
+                for (int i = 0; i < 10; i++) {
                     g.drawString((i + 1) + ". " + lb.lista.get(i).getName() + " " + lb.lista.get(i).getScore(),
-                            Juego.ANCHO / 2 - 120, (Juego.ALTURA / 3) + (i * 40));
+                            Juego.ANCHO / 2 - 120, (Juego.ALTURA / 4) + (i * 40));
                 }
             }
-
         }
     }
 }
