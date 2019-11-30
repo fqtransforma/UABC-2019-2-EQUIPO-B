@@ -20,8 +20,6 @@ public class RecicAlum extends ActorDeJuego {
     @Override
     public void render(Graphics g) {
         g.drawImage(Imagenes.recicAlum,(int)x,(int)y,null);
-        g.setColor(Color.gray);
-        g.fillRect((int)x,(int)y,200,128);
     }
 
     @Override

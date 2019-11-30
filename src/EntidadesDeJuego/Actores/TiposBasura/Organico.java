@@ -24,6 +24,6 @@ public class Organico extends ActorDeJuego {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y,32,32);
+        return new Rectangle((int)x,(int)y,52,52);
     }
 }

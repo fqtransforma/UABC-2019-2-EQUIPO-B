@@ -46,6 +46,7 @@ public class Imagenes {
     public static void cargaImagenes() {
         cargaFondo();
         cargaBasura();
+        cargaRecicladoras();
         cargaEnemigos();
         cargaJugador();
     }
@@ -69,29 +70,33 @@ public class Imagenes {
     }
 
     private static void cargaBasura(){
+
         try {
-            // Carga imágenes completas
-            basuraSheet = BIL.loadImage("res/Basura/Basura.png");
-            //recicladoraSheet = BIL.loadImage("res/Recicladoras.png");
-        }catch (IOException e) {
+
+            organico = BIL.loadImage("res/Basura/Organic.png");
+            aluminio = BIL.loadImage("res/Basura/Aluminum.png");
+            plastico = BIL.loadImage("res/Basura/Plastic.png");
+            carton = BIL.loadImage("res/Basura/cartonBox.png");
+
+        } catch (IOException e) {
 
             e.printStackTrace();
         }
-        // Inicializa los recortadores
-        SpriteSheet tSheet = new SpriteSheet(basuraSheet);
-        //SpriteSheet rsheet = new SpriteSheet(recicladoraSheet);
-        // Imágenes recortadas
-        organico = tSheet.grabImage(1,1,32,32);
-        aluminio = tSheet.grabImage(2,1,32,32);
-        plastico = tSheet.grabImage(3,1,32,32);
-        carton = tSheet.grabImage(4,1,32,32);
-        /*
-        recicOrganic = rsheet.grabImage(1,1,96,64);
-        recicAlum = rsheet.grabImage(2,1,96,64);
-        recicPlastic = rsheet.grabImage(3,1,96,64);
-        recicCarton = rsheet.grabImage(4,1,96,64);
+    }
 
-         */
+    private static void cargaRecicladoras() {
+
+        try {
+
+            recicOrganic = BIL.loadImage("res/Recicladoras/Organico.png");
+            recicAlum = BIL.loadImage("res/Recicladoras/Aluminio.png");
+            recicPlastic = BIL.loadImage("res/Recicladoras/Plastico.png");
+            recicCarton = BIL.loadImage("res/Recicladoras/Carton.png");
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
     }
 
     private static void cargaEnemigos(){

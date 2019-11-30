@@ -19,8 +19,6 @@ public class RecicPlastico extends ActorDeJuego {
     @Override
     public void render(Graphics g) {
         g.drawImage(Imagenes.recicPlastic,(int)x,(int)y,null);
-        g.setColor(Color.cyan);
-        g.fillRect((int)x,(int)y,200,128);
     }
 
     @Override

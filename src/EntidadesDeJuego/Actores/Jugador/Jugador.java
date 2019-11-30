@@ -192,6 +192,7 @@ public class Jugador extends ActorDeJuego {
             ActorDeJuego tempObject = controlador.object.get(i);
             if(tempObject.getID() == ID.Portal){
                 if(getBounds().intersects(tempObject.getBounds())){
+                    audio.playSonido("res/sonido/tp.wav");
                     Hud.nivel+=1;
                     Hud.puntaje+=100;
                 }
