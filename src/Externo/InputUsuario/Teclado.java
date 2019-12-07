@@ -50,7 +50,7 @@ public class Teclado extends KeyAdapter {
             if(key == KeyEvent.VK_ENTER)
                 Juego.estado = Juego.ESTADO.Menu;
                 audio.clip.close();
-                audio.playSonidoBG("res/sonido/Background/bensound-scifi.wav");
+                audio.playSonidoBG("src/res/sonido/Background/bensound-scifi.wav");
         }
     }
 }

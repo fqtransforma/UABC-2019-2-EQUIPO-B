@@ -89,7 +89,7 @@ public class Nivel {
         abrePortales();
         // Nivel 1
         if(Hud.nivel == 1 && nivel[0]) {
-            audio.playSonidoBG("res/sonido/Niveles/bensound-theduel.wav");
+            audio.playSonidoBG("src/res/sonido/Niveles/bensound-theduel.wav");
             nivel[0] = false;
             // Recicladoras
             controlador.agregaObject(new RecicAlum(1000,2000, ID.RecicladoraAluminio));
@@ -136,7 +136,7 @@ public class Nivel {
         // Nivel 3
         else if(Hud.nivel == 3 && nivel[2]) {
             audio.clip.close();
-            audio.playSonidoBG("res/sonido/Niveles/bensound-epic.wav");
+            audio.playSonidoBG("src/res/sonido/Niveles/bensound-epic.wav");
             nivel[2] = false;
             // Limpia nivel pasado
             controlador.object.clear();
@@ -199,7 +199,7 @@ public class Nivel {
         // Nivel 5
         else if(Hud.nivel == 5 && nivel[4]) {
             audio.clip.stop();
-            audio.playSonidoBG("res/sonido/Niveles/bensound-evolution.wav");
+            audio.playSonidoBG("src/res/sonido/Niveles/bensound-evolution.wav");
             nivel[4] = false;
             // Limpia nivel pasado
             controlador.object.clear();

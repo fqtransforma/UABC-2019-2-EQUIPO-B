@@ -67,7 +67,7 @@ public class Juego extends Canvas implements Runnable {
         this.addMouseListener(mouse);
         this.addKeyListener(teclado);
         lb.leer();
-        audio.playSonidoBG("res/sonido/Background/bensound-scifi.wav");
+        audio.playSonidoBG("src/res/sonido/Background/bensound-scifi.wav");
     }
 
     // Inicializa hilo
@@ -126,14 +126,14 @@ public class Juego extends Canvas implements Runnable {
             if(Hud.vida == 0){
                 nivel.audio.clip.close();
                 audio.clip.close();
-                audio.playSonidoBG("res/sonido/Background/bensound-ofeliasdream.wav");
+                audio.playSonidoBG("src/res/sonido/Background/bensound-ofeliasdream.wav");
                 estado = ESTADO.GameOver;
             }
             //cambia a win si el jugador gana ya que el nivel 7 no existe
             else if(Hud.nivel == 7){
                 nivel.audio.clip.close();
                 audio.clip.close();
-                audio.playSonidoBG("res/sonido/Background/bensound-newdawn.wav");
+                audio.playSonidoBG("src/res/sonido/Background/bensound-newdawn.wav");
                 estado = ESTADO.Win;
             }
             //Si el jugador no ha muerto ni ganado entonces llamamos las siguientes partes

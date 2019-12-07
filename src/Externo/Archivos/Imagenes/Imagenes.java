@@ -54,16 +54,16 @@ public class Imagenes {
     private static void cargaFondo(){
         try {
             // Carga imágenes completas
-            menuBG = BIL.loadImage("res/Background/menuBG.png");
-            leaderboardsBG = BIL.loadImage("res/Background/leaderboardsbg.png");
-            gameoverBG = BIL.loadImage("res/Background/gameoverBG.png");
-            winBG = BIL.loadImage("res/Background/ganasteBG.png");
-            nivel1 = BIL.loadImage("res/Niveles/nivel1.png");
-            nivel2 = BIL.loadImage("res/Niveles/nivel2.png");
-            nivel3 = BIL.loadImage("res/Niveles/nivel3.png");
-            nivel4 = BIL.loadImage("res/Niveles/nivel4.png");
-            nivel5 = BIL.loadImage("res/Niveles/nivel5.png");
-            nivel6 = BIL.loadImage("res/Niveles/nivel6.png");
+            menuBG = BIL.loadImage("src/res/Background/menuBG.png");
+            leaderboardsBG = BIL.loadImage("src/res/Background/leaderboardsbg.png");
+            gameoverBG = BIL.loadImage("src/res/Background/gameoverBG.png");
+            winBG = BIL.loadImage("src/res/Background/ganasteBG.png");
+            nivel1 = BIL.loadImage("src/res/Niveles/nivel1.png");
+            nivel2 = BIL.loadImage("src/res/Niveles/nivel2.png");
+            nivel3 = BIL.loadImage("src/res/Niveles/nivel3.png");
+            nivel4 = BIL.loadImage("src/res/Niveles/nivel4.png");
+            nivel5 = BIL.loadImage("src/res/Niveles/nivel5.png");
+            nivel6 = BIL.loadImage("src/res/Niveles/nivel6.png");
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,10 +73,10 @@ public class Imagenes {
 
         try {
 
-            organico = BIL.loadImage("res/Basura/Organic.png");
-            aluminio = BIL.loadImage("res/Basura/Aluminum.png");
-            plastico = BIL.loadImage("res/Basura/Plastic.png");
-            carton = BIL.loadImage("res/Basura/cartonBox.png");
+            organico = BIL.loadImage("src/res/Basura/Organic.png");
+            aluminio = BIL.loadImage("src/res/Basura/Aluminum.png");
+            plastico = BIL.loadImage("src/res/Basura/Plastic.png");
+            carton = BIL.loadImage("src/res/Basura/cartonBox.png");
 
         } catch (IOException e) {
 
@@ -88,10 +88,10 @@ public class Imagenes {
 
         try {
 
-            recicOrganic = BIL.loadImage("res/Recicladoras/Organico.png");
-            recicAlum = BIL.loadImage("res/Recicladoras/Aluminio.png");
-            recicPlastic = BIL.loadImage("res/Recicladoras/Plastico.png");
-            recicCarton = BIL.loadImage("res/Recicladoras/Carton.png");
+            recicOrganic = BIL.loadImage("src/res/Recicladoras/Organico.png");
+            recicAlum = BIL.loadImage("src/res/Recicladoras/Aluminio.png");
+            recicPlastic = BIL.loadImage("src/res/Recicladoras/Plastico.png");
+            recicCarton = BIL.loadImage("src/res/Recicladoras/Carton.png");
 
         } catch (IOException e) {
 
@@ -102,10 +102,10 @@ public class Imagenes {
     private static void cargaEnemigos(){
         try {
             // Carga imágenes completas
-            enemigoBSheet = BIL.loadImage("res/Enemigos/enemigoBasico.png");
-            enemigoRSheet = BIL.loadImage("res/Enemigos/enemigoRapido.png");
-            enemigoASheet = BIL.loadImage("res/Enemigos/enemigoAgresivo.png");
-            jefeSheet = BIL.loadImage("res/Enemigos/Jefe.png");
+            enemigoBSheet = BIL.loadImage("src/res/Enemigos/enemigoBasico.png");
+            enemigoRSheet = BIL.loadImage("src/res/Enemigos/enemigoRapido.png");
+            enemigoASheet = BIL.loadImage("src/res/Enemigos/enemigoAgresivo.png");
+            jefeSheet = BIL.loadImage("src/res/Enemigos/Jefe.png");
         }catch (IOException e) {
 
             e.printStackTrace();
@@ -143,7 +143,7 @@ public class Imagenes {
 
     private static void cargaJugador(){
         try{
-            jugadorSheet = BIL.loadImage("res/Jugador/jugador.png");
+            jugadorSheet = BIL.loadImage("src/res/Jugador/jugador.png");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -153,7 +153,7 @@ public class Imagenes {
         jugador[0] = jSheet.grabImage(3,1,32,64);
 
         try{
-            jugadorSheet = BIL.loadImage("res/Jugador/playerUP.png");
+            jugadorSheet = BIL.loadImage("src/res/Jugador/playerUP.png");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -166,7 +166,7 @@ public class Imagenes {
         jugador[4] = jSheet.grabImage(4,1,32,64);
 
         try{
-            jugadorSheet = BIL.loadImage("res/Jugador/playerDOWN.png");
+            jugadorSheet = BIL.loadImage("src/res/Jugador/playerDOWN.png");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -179,7 +179,7 @@ public class Imagenes {
         jugador[8] = jSheet.grabImage(4,1,32,64);
 
         try{
-            jugadorSheet = BIL.loadImage("res/Jugador/playerRIGHT.png");
+            jugadorSheet = BIL.loadImage("src/res/Jugador/playerRIGHT.png");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -192,7 +192,7 @@ public class Imagenes {
         jugador[12] = jSheet.grabImage(4,1,32,64);
 
         try{
-            jugadorSheet = BIL.loadImage("res/Jugador/playerLEFT.png");
+            jugadorSheet = BIL.loadImage("src/res/Jugador/playerLEFT.png");
         }catch (IOException e){
             e.printStackTrace();
         }

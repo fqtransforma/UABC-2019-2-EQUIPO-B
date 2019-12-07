@@ -40,27 +40,18 @@ public class Jugador extends ActorDeJuego {
 
             ActorDeJuego tempObject = controlador.object.get(i);
 
-            if(tempObject.getID() == ID.EnemigoBasico) {
+            if(tempObject.getID() == ID.EnemigoBasico || tempObject.getID() == ID.EnemigoRapido || tempObject.getID() == ID.EnemigoAgresivo) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     if(Hud.escudo >0)
                         Hud.escudo -=1;
                     else
                         Hud.vida -=1;
-                    audio.playSonido("res/Sonido/Jugador/Dolor.wav");
-                }
-            }
-            else if(tempObject.getID() == ID.EnemigoRapido) {
-                if(getBounds().intersects(tempObject.getBounds())) {
-                    //audio.playSonido("res/Sonido/Jugador/Dolor.wav");
-                    if(Hud.escudo >0)
-                        Hud.escudo -=1;
-                    else
-                        Hud.vida -=1;
+                    audio.playSonido("src/res/Sonido/Jugador/Dolor.wav");
                 }
             }
             else if(tempObject.getID() == ID.Jefe) {
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    //audio.playSonido("res/Sonido/Jugador/Dolor.wav");
+                    audio.playSonido("src/res/Sonido/Jugador/Dolor.wav");
                     if(Hud.escudo >0)
                         Hud.escudo -=5;
                     else
@@ -83,7 +74,7 @@ public class Jugador extends ActorDeJuego {
 
                 if(getBounds().intersects(tempObject.getBounds())) {
 
-                    audio.playSonido("res/Sonido/Basura/Carton.wav");
+                    audio.playSonido("src/res/Sonido/Basura/Carton.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[0] = true;
@@ -92,7 +83,7 @@ public class Jugador extends ActorDeJuego {
             else if(tempObject.getID() == ID.Plastico && !Hud.cargaBasura[0] && !Hud.cargaBasura[1]
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    audio.playSonido("res/Sonido/Basura/Plastico.wav");
+                    audio.playSonido("src/res/Sonido/Basura/Plastico.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[1] = true;
@@ -101,7 +92,7 @@ public class Jugador extends ActorDeJuego {
             else if(tempObject.getID() == ID.BasuraOrganica && !Hud.cargaBasura[0] && !Hud.cargaBasura[1]
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    audio.playSonido("res/Sonido/Basura/Organico.wav");
+                    audio.playSonido("src/res/Sonido/Basura/Organico.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[2] = true;
@@ -110,7 +101,7 @@ public class Jugador extends ActorDeJuego {
             else if(tempObject.getID() == ID.Aluminio && !Hud.cargaBasura[0] && !Hud.cargaBasura[1]
                     && !Hud.cargaBasura[2] && !Hud.cargaBasura[3]) {
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    audio.playSonido("res/Sonido/Basura/Metal.wav");
+                    audio.playSonido("src/res/Sonido/Basura/Metal.wav");
                     controlador.quitarObject(tempObject);
                     Hud.puntaje +=10;
                     Hud.cargaBasura[3] = true;
@@ -121,28 +112,28 @@ public class Jugador extends ActorDeJuego {
 
     private void recompensaRecicladora(ID id) {
         if(id == ID.RecicladoraCarton && Hud.cargaBasura[0]) {
-            audio.playSonido("res/Sonido/Basura/Carton.wav");
+            audio.playSonido("src/res/Sonido/Basura/Carton.wav");
             Hud.cargaBasura[0] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
             Hud.velocidadMAX += 0.1;
         }
         else if(id == ID.RecicladoraPlastico && Hud.cargaBasura[1]) {
-            audio.playSonido("res/Sonido/Basura/Plastico.wav");
+            audio.playSonido("src/res/Sonido/Basura/Plastico.wav");
             Hud.cargaBasura[1] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
             Hud.escudo +=10;
         }
         else if(id == ID.RecicladoraOrganica && Hud.cargaBasura[2]) {
-            audio.playSonido("res/Sonido/Basura/Organico.wav");
+            audio.playSonido("src/res/Sonido/Basura/Organico.wav");
             Hud.cargaBasura[2] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
             Hud.vida += 20;
         }
         else if(id == ID.RecicladoraAluminio && Hud.cargaBasura[3]) {
-            audio.playSonido("res/Sonido/Basura/entregaMetal.wav");
+            audio.playSonido("src/res/Sonido/Basura/entregaMetal.wav");
             Hud.cargaBasura[3] = false;
             Hud.puntaje += 90;
             Hud.basuraEntregada++;
@@ -192,7 +183,7 @@ public class Jugador extends ActorDeJuego {
             ActorDeJuego tempObject = controlador.object.get(i);
             if(tempObject.getID() == ID.Portal){
                 if(getBounds().intersects(tempObject.getBounds())){
-                    audio.playSonido("res/sonido/tp.wav");
+                    audio.playSonido("src/res/sonido/tp.wav");
                     Hud.nivel+=1;
                     Hud.puntaje+=100;
                 }
