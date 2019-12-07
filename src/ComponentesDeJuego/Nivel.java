@@ -48,7 +48,8 @@ public class Nivel {
             nivel[i] = true;
         }
     }
-    
+
+    // Se encarga de aparecer el portal
     private void abrePortales() {
         if(Hud.basuraEntregada == 4 && Hud.nivel == 1 && portal[0]) {
             aparecePortal.playSonido("res/sonido/tp.wav");

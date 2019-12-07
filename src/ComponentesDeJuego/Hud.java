@@ -42,7 +42,7 @@ public class Hud {
 
     //pinta el heads up display
     public void render(Graphics g){
-        //rectangulo superior
+        //rectangulo superior donde pintamos toda la info del jugador
         g.setColor(Color.black);
         g.fillRect(0,0, Juego.ANCHO, Juego.ALTURA /8);
         g.setColor(Color.white);
@@ -52,6 +52,7 @@ public class Hud {
         g.drawString("Nivel: "+ nivel, Juego.ANCHO /26, Juego.ALTURA /25);
         g.drawString("Puntaje: "+ puntaje, Juego.ANCHO /26, Juego.ALTURA /13);
         g.drawString("Basura reciclada: "+ basuraEntregada, Juego.ANCHO /26, Juego.ALTURA /9);
+        //ifs para indicarnos que esta cargando el jugador
         if(cargaBasura[0]) {
             g.drawString("Cargando cartón", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }
@@ -64,6 +65,7 @@ public class Hud {
         else if(cargaBasura[3]) {
             g.drawString("Cargando aluminio", (int) (Juego.ANCHO / 2.5), Juego.ALTURA / 16);
         }
+        //texto de escudo y vida
         g.drawString("Escudo: ",(int)(Juego.ANCHO /1.28), Juego.ALTURA /24);
         g.drawString("Vida: ",(int)(Juego.ANCHO /1.28), Juego.ALTURA /12);
         //rectangulo de la vida

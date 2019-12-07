@@ -1,6 +1,5 @@
 package ComponentesDeJuego;
 
-import EntidadesDeJuego.Entidad.Animacion;
 import Externo.Archivos.Imagenes.Imagenes;
 import Externo.Archivos.Jugador.Leaderboards;
 import Externo.Archivos.Sonido.Audio;
@@ -16,8 +15,6 @@ public class Juego extends Canvas implements Runnable {
     private static Toolkit tk = Toolkit.getDefaultToolkit();
     public static final int ANCHO = ((int)tk.getScreenSize().getWidth());
     public static final int ALTURA = ((int)tk.getScreenSize().getHeight());
-    //public static final int ANCHO = 1024;
-    //public static final int ALTURA = 600;
     private Thread thread;
     private boolean corriendo = false;
     public static boolean capturaJugador;
@@ -121,7 +118,7 @@ public class Juego extends Canvas implements Runnable {
         stop();
     }
 
-    // Método que maneja la logica del juego
+    // Método que maneja la logica del juego dependiendo del estado en el que nos escontremos
     private void tick(){
 
         if(estado == ESTADO.Juego) {
@@ -132,13 +129,14 @@ public class Juego extends Canvas implements Runnable {
                 audio.playSonidoBG("res/sonido/Background/bensound-ofeliasdream.wav");
                 estado = ESTADO.GameOver;
             }
+            //cambia a win si el jugador gana ya que el nivel 7 no existe
             else if(Hud.nivel == 7){
                 nivel.audio.clip.close();
                 audio.clip.close();
                 audio.playSonidoBG("res/sonido/Background/bensound-newdawn.wav");
                 estado = ESTADO.Win;
             }
-            // Corre las variables de los componentes del juego
+            //Si el jugador no ha muerto ni ganado entonces llamamos las siguientes partes
             nivel.tick();
             controlador.tick();
             hud.tick();
@@ -147,6 +145,8 @@ public class Juego extends Canvas implements Runnable {
         else if(estado == ESTADO.GameOver  || estado == ESTADO.Win){
             // Agrega jugador al arreglo, lo escribe y reinicia el juego
             if(capturaJugador) {
+                TecladoJugador.parche();
+                lb.lista.clear();
                 lb.addRankedPlayer();
                 lb.escribre();
                 Hud.resetJuego();

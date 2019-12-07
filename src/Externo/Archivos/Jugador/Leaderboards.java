@@ -63,7 +63,8 @@ public class Leaderboards {
     public void ordenamiento(){
         int j;
         JugadorRankeado llave;
-        for (int i = 1; i < lista.size(); i++) {
+        if(lista.size() > 10) {
+            for (int i = 1; i < 10; i++) {
                 llave = lista.get(i);
                 j = i - 1;
                 while (j >= 0 && llave.getScore() > lista.get(j).getScore()) {
@@ -71,6 +72,18 @@ public class Leaderboards {
                     j--;
                 }
                 lista.set(j + 1, llave);
+            }
+        }
+        else{
+            for (int i = 1; i < lista.size(); i++) {
+                llave = lista.get(i);
+                j = i - 1;
+                while (j >= 0 && llave.getScore() > lista.get(j).getScore()) {
+                    lista.set(j + 1, lista.get(j));
+                    j--;
+                }
+                lista.set(j + 1, llave);
+            }
         }
     }
 }

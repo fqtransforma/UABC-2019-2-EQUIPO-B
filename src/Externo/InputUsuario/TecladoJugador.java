@@ -7,6 +7,11 @@ public class TecladoJugador extends KeyAdapter {
 
     public static boolean[] teclas = new boolean[4];
 
+    public static void parche(){
+        for(int i = 0; i < teclas.length; i++)
+            teclas[i] = false;
+    }
+
     public void keyPressed(KeyEvent e){
         int tecla = e.getKeyCode();
 

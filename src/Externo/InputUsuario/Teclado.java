@@ -42,14 +42,8 @@ public class Teclado extends KeyAdapter {
                 handler.object.clear();
                 level.resetNivel();
                 level.audio.clip.close();
-                audio.clip.close();
+                audio.clip.start();
             }
-
-            else if(key == KeyEvent.VK_1)
-                Hud.nivel++;
-
-            else if(key == KeyEvent.VK_2)
-                Hud.basuraEntregada+=1;
         }
 
         else if(Juego.estado == Juego.ESTADO.GameOver || Juego.estado == Juego.ESTADO.Win){

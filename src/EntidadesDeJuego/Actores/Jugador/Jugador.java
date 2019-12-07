@@ -43,28 +43,28 @@ public class Jugador extends ActorDeJuego {
             if(tempObject.getID() == ID.EnemigoBasico) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     if(Hud.escudo >0)
-                        Hud.escudo -=5;
+                        Hud.escudo -=1;
                     else
-                        Hud.vida -=5;
-                    //audio.playSonido("res/Sonido/Jugador/Dolor.wav");
+                        Hud.vida -=1;
+                    audio.playSonido("res/Sonido/Jugador/Dolor.wav");
                 }
             }
             else if(tempObject.getID() == ID.EnemigoRapido) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     //audio.playSonido("res/Sonido/Jugador/Dolor.wav");
                     if(Hud.escudo >0)
-                        Hud.escudo -=5;
+                        Hud.escudo -=1;
                     else
-                        Hud.vida -=5;
+                        Hud.vida -=1;
                 }
             }
             else if(tempObject.getID() == ID.Jefe) {
                 if(getBounds().intersects(tempObject.getBounds())) {
                     //audio.playSonido("res/Sonido/Jugador/Dolor.wav");
                     if(Hud.escudo >0)
-                        Hud.escudo -=10;
+                        Hud.escudo -=5;
                     else
-                        Hud.vida -=10;
+                        Hud.vida -=5;
                 }
             }
         }
